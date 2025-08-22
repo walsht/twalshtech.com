@@ -152,22 +152,22 @@ body {
 
 .cta-button {
     display: block;
-    background: #10b981;
+    background: #007AFF;
     color: white;
     padding: 1rem 2rem;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
     margin: 0 auto;
     width: fit-content;
 }
 
 .cta-button:hover {
-    background: #059669;
+    background: #0056CC;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
 }
 
 .hero-graphic {
@@ -397,7 +397,7 @@ body {
 }
 
 .submit-button {
-    background: linear-gradient(135deg, #059669, #10b981);
+    background: linear-gradient(135deg, #007AFF, #0056CC);
     color: white;
     border: none;
     padding: 1rem 2rem;
@@ -413,7 +413,7 @@ body {
 
     .submit-button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(5, 150, 105, 0.3);
+        box-shadow: 0 10px 20px rgba(0, 122, 255, 0.3);
     }
 
 

@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Protected email display
 document.addEventListener('DOMContentLoaded', () => {
-    const email = 'twalsh1@gmail.com';
+    const email = 'walshitech@gmail.com';
     
 
     
