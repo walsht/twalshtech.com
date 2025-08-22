@@ -75,10 +75,8 @@ contactForm.addEventListener('submit', async function(e) {
         formData.append('service', data.service);
         formData.append('message', data.message);
         
-        // Only add reCAPTCHA if we have a valid token
-        if (recaptchaToken && recaptchaToken !== 'recaptcha-failed') {
-            formData.append('g-recaptcha-response', recaptchaToken);
-        }
+        // reCAPTCHA disabled due to DNS blocking
+        // No spam protection for now
         
         console.log('Form data prepared, sending to:', this.action);
         console.log('Form data contents:', Object.fromEntries(formData));
@@ -99,8 +97,7 @@ contactForm.addEventListener('submit', async function(e) {
             // Reset form
             this.reset();
             
-            // Reset reCAPTCHA
-            grecaptcha.reset();
+            // reCAPTCHA disabled
         } else {
             const errorText = await response.text();
             console.error('Formspree error:', response.status, errorText);
