@@ -84,12 +84,14 @@ contactForm.addEventListener('submit', async function(e) {
         // Submit form to Formspree
         const response = await fetch(this.action, {
             method: 'POST',
-            body: formData
+            body: formData,
+            redirect: 'manual' // Prevent automatic redirect
         });
         
         console.log('Response received:', response.status, response.statusText);
         
-        if (response.ok) {
+        // Check if submission was successful (Formspree returns 302 redirect on success)
+        if (response.status === 302 || response.status === 200) {
             console.log('Form submitted successfully!');
             // Show success modal
             successModal.style.display = 'block';
