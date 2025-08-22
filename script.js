@@ -81,30 +81,37 @@ contactForm.addEventListener('submit', async function(e) {
         console.log('Form data prepared, sending to:', this.action);
         console.log('Form data contents:', Object.fromEntries(formData));
         
-        // Submit form to Formspree
-        const response = await fetch(this.action, {
-            method: 'POST',
-            body: formData,
-            redirect: 'manual' // Prevent automatic redirect
-        });
+        // Use traditional form submission to avoid CORS issues
+        console.log('Submitting form via traditional method...');
         
-        console.log('Response received:', response.status, response.statusText);
+        // Create a temporary form element
+        const tempForm = document.createElement('form');
+        tempForm.method = 'POST';
+        tempForm.action = this.action;
+        tempForm.style.display = 'none';
         
-        // Check if submission was successful (Formspree returns 302 redirect on success)
-        if (response.status === 302 || response.status === 200) {
-            console.log('Form submitted successfully!');
-            // Show success modal
-            successModal.style.display = 'block';
-            
-            // Reset form
-            this.reset();
-            
-            // reCAPTCHA disabled
-        } else {
-            const errorText = await response.text();
-            console.error('Formspree error:', response.status, errorText);
-            throw new Error(`Form submission failed: ${response.status} - ${errorText}`);
+        // Add form data
+        for (let [key, value] of formData.entries()) {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = key;
+            input.value = value;
+            tempForm.appendChild(input);
         }
+        
+        // Add form to page and submit
+        document.body.appendChild(tempForm);
+        tempForm.submit();
+        
+        // Remove temporary form
+        document.body.removeChild(tempForm);
+        
+        // Show success modal
+        console.log('Form submitted successfully!');
+        successModal.style.display = 'block';
+        
+        // Reset form
+        this.reset();
         
         // Reset button
         submitButton.innerHTML = originalText;
