@@ -137,38 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const email = 'twalsh1@gmail.com';
     
-    // Function to show copy confirmation message
-    function showCopyMessage(element, message) {
-        // Create or update message element
-        let messageEl = document.getElementById('copy-message');
-        if (!messageEl) {
-            messageEl = document.createElement('div');
-            messageEl.id = 'copy-message';
-            messageEl.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: #10b981;
-                color: white;
-                padding: 12px 20px;
-                border-radius: 6px;
-                font-weight: 500;
-                z-index: 1000;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-                transform: translateX(100%);
-                transition: transform 0.3s ease;
-            `;
-            document.body.appendChild(messageEl);
-        }
-        
-        messageEl.textContent = message;
-        messageEl.style.transform = 'translateX(0)';
-        
-        // Hide after 3 seconds
-        setTimeout(() => {
-            messageEl.style.transform = 'translateX(100%)';
-        }, 3000);
-    }
+
     
     // Function to handle email reveal
     function revealEmail(element, originalText) {
@@ -198,9 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add mailto instruction
             element.title = 'Email copied! Click again to open email client.';
             
-            // Show success message
-            showCopyMessage(element, 'Email copied to clipboard!');
-            
             // Reset after 10 seconds (longer for better UX)
             setTimeout(() => {
                 element.textContent = originalText;
@@ -214,8 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
             element.style.color = '#10b981';
             element.style.cursor = 'pointer';
             element.title = 'Email revealed! Click again to open email client.';
-            
-            showCopyMessage(element, 'Email revealed!');
             
             setTimeout(() => {
                 element.textContent = originalText;
