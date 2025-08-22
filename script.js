@@ -61,27 +61,45 @@ contactForm.addEventListener('submit', async function(e) {
         submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
         submitButton.disabled = true;
         
-        // Execute reCAPTCHA
-        const recaptchaToken = await grecaptcha.execute('6LeFpa4rAAAAACphdc3lO_a80ZSkDBxswvoZGTsl', {action: 'contact_form'});
+        console.log('Starting form submission...');
         
-        // Add reCAPTCHA token to form data
-        data.recaptchaToken = recaptchaToken;
+        // Execute reCAPTCHA (with fallback)
+        console.log('Executing reCAPTCHA...');
+        let recaptchaToken;
+        try {
+            recaptchaToken = await grecaptcha.execute('6LeFpa4rAAAAACphdc3lO_a80ZSkDBxswvoZSkDBxswvoZGTsl', {action: 'contact_form'});
+            console.log('reCAPTCHA token received:', recaptchaToken ? 'Yes' : 'No');
+        } catch (recaptchaError) {
+            console.warn('reCAPTCHA failed, proceeding without it:', recaptchaError);
+            recaptchaToken = 'recaptcha-failed';
+        }
         
-        // Submit form to Formspree
+        // Create form data
         const formData = new FormData();
         formData.append('name', data.name);
         formData.append('email', data.email);
         formData.append('company', data.company);
         formData.append('service', data.service);
         formData.append('message', data.message);
-        formData.append('g-recaptcha-response', recaptchaToken);
         
+        // Only add reCAPTCHA if we have a valid token
+        if (recaptchaToken && recaptchaToken !== 'recaptcha-failed') {
+            formData.append('g-recaptcha-response', recaptchaToken);
+        }
+        
+        console.log('Form data prepared, sending to:', this.action);
+        console.log('Form data contents:', Object.fromEntries(formData));
+        
+        // Submit form to Formspree
         const response = await fetch(this.action, {
             method: 'POST',
             body: formData
         });
         
+        console.log('Response received:', response.status, response.statusText);
+        
         if (response.ok) {
+            console.log('Form submitted successfully!');
             // Show success modal
             successModal.style.display = 'block';
             
@@ -93,7 +111,7 @@ contactForm.addEventListener('submit', async function(e) {
         } else {
             const errorText = await response.text();
             console.error('Formspree error:', response.status, errorText);
-            throw new Error(`Form submission failed: ${response.status}`);
+            throw new Error(`Form submission failed: ${response.status} - ${errorText}`);
         }
         
         // Reset button
@@ -102,7 +120,7 @@ contactForm.addEventListener('submit', async function(e) {
         
     } catch (error) {
         console.error('Error submitting form:', error);
-        alert('There was an error sending your message. Please try again.');
+        alert(`There was an error sending your message: ${error.message}. Please try again.`);
         
         // Reset button
         const submitButton = this.querySelector('.submit-button');
