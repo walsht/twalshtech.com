@@ -63,16 +63,9 @@ contactForm.addEventListener('submit', async function(e) {
         
         console.log('Starting form submission...');
         
-        // Execute reCAPTCHA (with fallback)
-        console.log('Executing reCAPTCHA...');
-        let recaptchaToken;
-        try {
-            recaptchaToken = await grecaptcha.execute('6LeFpa4rAAAAACphdc3lO_a80ZSkDBxswvoZSkDBxswvoZGTsl', {action: 'contact_form'});
-            console.log('reCAPTCHA token received:', recaptchaToken ? 'Yes' : 'No');
-        } catch (recaptchaError) {
-            console.warn('reCAPTCHA failed, proceeding without it:', recaptchaError);
-            recaptchaToken = 'recaptcha-failed';
-        }
+        // Skip reCAPTCHA for now (NextDNS blocking)
+        console.log('Skipping reCAPTCHA due to DNS blocking');
+        const recaptchaToken = 'skipped';
         
         // Create form data
         const formData = new FormData();
