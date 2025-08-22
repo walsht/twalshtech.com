@@ -172,6 +172,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Function to handle email reveal
     function revealEmail(element, originalText) {
+        // Check if email is already revealed
+        if (element.textContent === email) {
+            // Email is already shown, open mailto link
+            const mailtoLink = `mailto:${email}?subject=TWalsh Tech Inquiry`;
+            window.open(mailtoLink, '_blank');
+            return;
+        }
+        
+        // First click - reveal email and copy to clipboard
         // Try to open mailto link first
         try {
             const mailtoLink = `mailto:${email}?subject=TWalsh Tech Inquiry`;
@@ -184,10 +193,10 @@ document.addEventListener('DOMContentLoaded', () => {
         navigator.clipboard.writeText(email).then(() => {
             element.textContent = email;
             element.style.color = '#10b981';
-            element.style.cursor = 'default';
+            element.style.cursor = 'pointer';
             
-            // Add copy confirmation
-            element.title = 'Email copied to clipboard! Click to copy again.';
+            // Add mailto instruction
+            element.title = 'Email copied! Click again to open email client.';
             
             // Show success message
             showCopyMessage(element, 'Email copied to clipboard!');
@@ -203,8 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Fallback if clipboard fails
             element.textContent = email;
             element.style.color = '#10b981';
-            element.style.cursor = 'default';
-            element.title = 'Email revealed!';
+            element.style.cursor = 'pointer';
+            element.title = 'Email revealed! Click again to open email client.';
             
             showCopyMessage(element, 'Email revealed!');
             
