@@ -1,0 +1,27 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Enhanced network nodes -->
+  <circle cx="20" cy="20" r="6" fill="#2563eb"/>
+  <circle cx="40" cy="30" r="6" fill="#1d4ed8"/>
+  <circle cx="20" cy="40" r="6" fill="#3b82f6"/>
+  
+  <!-- Additional network nodes -->
+  <circle cx="35" cy="15" r="3" fill="#60a5fa"/>
+  <circle cx="35" cy="45" r="3" fill="#60a5fa"/>
+  
+  <!-- Connection lines with varying thickness -->
+  <line x1="26" y1="20" x2="34" y2="30" stroke="#2563eb" stroke-width="2.5"/>
+  <line x1="26" y1="40" x2="34" y2="30" stroke="#2563eb" stroke-width="2.5"/>
+  <line x1="26" y1="20" x2="26" y2="40" stroke="#2563eb" stroke-width="2.5"/>
+  <line x1="32" y1="15" x2="34" y2="30" stroke="#60a5fa" stroke-width="1.5"/>
+  <line x1="32" y1="45" x2="34" y2="30" stroke="#60a5fa" stroke-width="1.5"/>
+  
+  <!-- Modern TWALSH text -->
+  <text x="55" y="26" font-family="Arial, sans-serif" font-size="20" font-weight="800" fill="#1f2937">TWALSH</text>
+  <text x="55" y="42" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#6b7280">TECH</text>
+  
+  <!-- Modern network accent -->
+  <rect x="55" y="48" width="85" height="2" fill="#2563eb"/>
+  <circle cx="140" cy="49" r="3" fill="#2563eb"/>
+  <circle cx="145" cy="49" r="2" fill="#3b82f6"/>
+  <circle cx="150" cy="49" r="1.5" fill="#60a5fa"/>
+</svg>

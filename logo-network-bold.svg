@@ -1,0 +1,27 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Network nodes with stronger colors -->
+  <circle cx="20" cy="20" r="7" fill="#1e40af"/>
+  <circle cx="40" cy="30" r="7" fill="#1d4ed8"/>
+  <circle cx="20" cy="40" r="7" fill="#2563eb"/>
+  
+  <!-- Connection lines with gradient -->
+  <defs>
+    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e40af;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <line x1="27" y1="20" x2="33" y2="30" stroke="url(#lineGradient)" stroke-width="3"/>
+  <line x1="27" y1="40" x2="33" y2="30" stroke="url(#lineGradient)" stroke-width="3"/>
+  <line x1="27" y1="20" x2="27" y2="40" stroke="url(#lineGradient)" stroke-width="3"/>
+  
+  <!-- Bold TWALSH text -->
+  <text x="55" y="28" font-family="Arial, sans-serif" font-size="22" font-weight="900" fill="#1e293b">TWALSH</text>
+  <text x="55" y="45" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#475569">TECH</text>
+  
+  <!-- Network accent with dots -->
+  <rect x="55" y="48" width="85" height="3" fill="#1e40af"/>
+  <circle cx="140" cy="49.5" r="4" fill="#1e40af"/>
+  <circle cx="145" cy="49.5" r="2" fill="#3b82f6"/>
+</svg>

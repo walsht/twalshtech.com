@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function openMailto(element, originalText) {
         if (element.textContent === email) {
             // Email is visible, open mailto link
-            const mailtoLink = `mailto:${email}?subject=TWalsh Tech Inquiry`;
+            const mailtoLink = `mailto:${email}?subject=TWALSH Tech Inquiry`;
             
             // Try multiple methods to open mailto link
             try {

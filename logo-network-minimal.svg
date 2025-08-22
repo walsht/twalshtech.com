@@ -1,0 +1,18 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Minimal network nodes -->
+  <circle cx="20" cy="20" r="4" fill="#2563eb"/>
+  <circle cx="40" cy="30" r="4" fill="#1d4ed8"/>
+  <circle cx="20" cy="40" r="4" fill="#3b82f6"/>
+  
+  <!-- Clean connection lines -->
+  <line x1="24" y1="20" x2="36" y2="30" stroke="#2563eb" stroke-width="1.5"/>
+  <line x1="24" y1="40" x2="36" y2="30" stroke="#2563eb" stroke-width="1.5"/>
+  <line x1="24" y1="20" x2="24" y2="40" stroke="#2563eb" stroke-width="1.5"/>
+  
+  <!-- Minimalist TWALSH text -->
+  <text x="55" y="30" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#1f2937">TWALSH</text>
+  <text x="55" y="45" font-family="Arial, sans-serif" font-size="12" font-weight="500" fill="#9ca3af">TECH</text>
+  
+  <!-- Simple accent -->
+  <line x1="55" y1="50" x2="140" y2="50" stroke="#2563eb" stroke-width="1"/>
+</svg>
