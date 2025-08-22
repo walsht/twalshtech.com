@@ -98,8 +98,13 @@ contactForm.addEventListener('submit', async function(e) {
             tempForm.appendChild(input);
         }
         
+        // Add form to page
         document.body.appendChild(tempForm);
+        
+        // Submit form and immediately prevent redirect
         tempForm.submit();
+        
+        // Remove form immediately
         document.body.removeChild(tempForm);
         
         // Show success modal immediately
@@ -108,6 +113,13 @@ contactForm.addEventListener('submit', async function(e) {
         this.reset();
         submitButton.innerHTML = originalText;
         submitButton.disabled = false;
+        
+        // Prevent any redirects
+        setTimeout(() => {
+            if (window.location.href.includes('formspree.io')) {
+                window.history.back();
+            }
+        }, 100);
         
         return; // Exit early
         
