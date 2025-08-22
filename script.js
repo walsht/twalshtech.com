@@ -145,17 +145,47 @@ document.addEventListener('DOMContentLoaded', () => {
         if (element.textContent === email) {
             // Email is already shown, open mailto link
             const mailtoLink = `mailto:${email}?subject=TWalsh Tech Inquiry`;
-            window.open(mailtoLink, '_blank');
+            
+            // Try multiple methods to open mailto link
+            try {
+                // Method 1: Direct window.location (works on most browsers)
+                window.location.href = mailtoLink;
+            } catch (error) {
+                try {
+                    // Method 2: window.open (fallback)
+                    window.open(mailtoLink, '_blank');
+                } catch (error2) {
+                    // Method 3: Create and click a temporary link
+                    const tempLink = document.createElement('a');
+                    tempLink.href = mailtoLink;
+                    tempLink.style.display = 'none';
+                    document.body.appendChild(tempLink);
+                    tempLink.click();
+                    document.body.removeChild(tempLink);
+                }
+            }
             return;
         }
         
         // First click - reveal email and copy to clipboard
-        // Try to open mailto link first
+        // Try to open mailto link first with multiple methods
+        const mailtoLink = `mailto:${email}?subject=TWalsh Tech Inquiry`;
         try {
-            const mailtoLink = `mailto:${email}?subject=TWalsh Tech Inquiry`;
-            window.open(mailtoLink, '_blank');
+            // Method 1: Direct window.location
+            window.location.href = mailtoLink;
         } catch (error) {
-            console.log('Mailto link failed, showing email directly');
+            try {
+                // Method 2: window.open
+                window.open(mailtoLink, '_blank');
+            } catch (error2) {
+                // Method 3: Create and click temporary link
+                const tempLink = document.createElement('a');
+                tempLink.href = mailtoLink;
+                tempLink.style.display = 'none';
+                document.body.appendChild(tempLink);
+                tempLink.click();
+                document.body.removeChild(tempLink);
+            }
         }
         
         // Always copy to clipboard and show email
