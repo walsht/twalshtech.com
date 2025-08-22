@@ -31,8 +31,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Contact Form Handling
 const contactForm = document.getElementById('contactForm');
-const successModal = document.getElementById('successModal');
-const closeModal = document.querySelector('.close');
 
 contactForm.addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -79,8 +77,7 @@ contactForm.addEventListener('submit', async function(e) {
             tempForm.submit();
             document.body.removeChild(tempForm);
             
-            // Show success modal
-            successModal.style.display = 'block';
+            // Form submitted successfully - let Formspree handle confirmation
             this.reset();
             submitButton.innerHTML = originalText;
             submitButton.disabled = false;
@@ -98,24 +95,7 @@ contactForm.addEventListener('submit', async function(e) {
     }
 });
 
-// Close modal when clicking the X
-closeModal.addEventListener('click', () => {
-    successModal.style.display = 'none';
-});
 
-// Close modal when clicking outside
-window.addEventListener('click', (e) => {
-    if (e.target === successModal) {
-        successModal.style.display = 'none';
-    }
-});
-
-// Close modal with Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && successModal.style.display === 'block') {
-        successModal.style.display = 'none';
-    }
-});
 
 // Navbar background on scroll
 window.addEventListener('scroll', () => {
