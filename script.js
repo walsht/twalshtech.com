@@ -81,13 +81,20 @@ contactForm.addEventListener('submit', async function(e) {
         console.log('Form data prepared, sending to:', this.action);
         console.log('Form data contents:', Object.fromEntries(formData));
         
-        // Use traditional form submission to avoid CORS issues
-        console.log('Submitting form via traditional method...');
+        // Use iframe submission to prevent redirect
+        console.log('Submitting form via iframe to prevent redirect...');
         
-        // Create a temporary form element
+        // Create a hidden iframe
+        const iframe = document.createElement('iframe');
+        iframe.name = 'formspree-iframe';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+        
+        // Create form that targets the iframe
         const tempForm = document.createElement('form');
         tempForm.method = 'POST';
         tempForm.action = this.action;
+        tempForm.target = 'formspree-iframe';
         tempForm.style.display = 'none';
         
         // Add form data
@@ -103,17 +110,18 @@ contactForm.addEventListener('submit', async function(e) {
         document.body.appendChild(tempForm);
         tempForm.submit();
         
-        // Remove temporary form
+        // Remove temporary elements
         document.body.removeChild(tempForm);
+        document.body.removeChild(iframe);
         
-        // Show success modal
+        // Show success modal immediately
         console.log('Form submitted successfully!');
         successModal.style.display = 'block';
         
-        // Reset form
+        // Reset the original form
         this.reset();
         
-        // Reset button
+        // Reset button state
         submitButton.innerHTML = originalText;
         submitButton.disabled = false;
         
