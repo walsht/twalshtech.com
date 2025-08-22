@@ -105,15 +105,16 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
 .hero-logo {
     margin-bottom: 1.5rem;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .hero-logo-img {
@@ -127,16 +128,18 @@ body {
     font-weight: 700;
     margin-bottom: 1.5rem;
     line-height: 1.2;
+    text-align: center;
 }
 
 .hero-content p {
     font-size: 1.25rem;
     margin-bottom: 2rem;
     opacity: 0.9;
+    text-align: center;
 }
 
 .cta-button {
-    display: inline-block;
+    display: block;
     background: #10b981;
     color: white;
     padding: 1rem 2rem;
@@ -145,6 +148,8 @@ body {
     font-weight: 600;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    margin: 0 auto;
+    width: fit-content;
 }
 
 .cta-button:hover {
