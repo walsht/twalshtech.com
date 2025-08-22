@@ -348,10 +348,26 @@ body {
     gap: 0.5rem;
 }
 
-.submit-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
-}
+    .submit-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+    }
+
+    .recaptcha-info {
+        margin-top: 1rem;
+        text-align: center;
+        color: #6b7280;
+        font-size: 0.875rem;
+    }
+
+    .recaptcha-info a {
+        color: #2563eb;
+        text-decoration: none;
+    }
+
+    .recaptcha-info a:hover {
+        text-decoration: underline;
+    }
 
 /* Footer */
 .footer {

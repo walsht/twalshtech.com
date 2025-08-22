@@ -58,17 +58,43 @@ contactForm.addEventListener('submit', async function(e) {
         // Show loading state
         const submitButton = this.querySelector('.submit-button');
         const originalText = submitButton.innerHTML;
-        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
         submitButton.disabled = true;
         
-        // Simulate form submission (replace with actual email service)
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        // Execute reCAPTCHA
+        const recaptchaToken = await grecaptcha.execute('6LeFpa4rAAAAACphdc3lO_a80ZSkDBxswvoZGTsl', {action: 'contact_form'});
         
-        // Show success modal
-        successModal.style.display = 'block';
+        // Add reCAPTCHA token to form data
+        data.recaptchaToken = recaptchaToken;
         
-        // Reset form
-        this.reset();
+        // Submit form to Formspree
+        const response = await fetch(this.action, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: data.name,
+                email: data.email,
+                company: data.company,
+                service: data.service,
+                message: data.message,
+                'g-recaptcha-response': recaptchaToken
+            })
+        });
+        
+        if (response.ok) {
+            // Show success modal
+            successModal.style.display = 'block';
+            
+            // Reset form
+            this.reset();
+            
+            // Reset reCAPTCHA
+            grecaptcha.reset();
+        } else {
+            throw new Error('Form submission failed');
+        }
         
         // Reset button
         submitButton.innerHTML = originalText;
