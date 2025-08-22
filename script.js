@@ -81,6 +81,36 @@ contactForm.addEventListener('submit', async function(e) {
         console.log('Form data prepared, sending to:', this.action);
         console.log('Form data contents:', Object.fromEntries(formData));
         
+        // Test simple form submission first
+        console.log('Testing simple form submission...');
+        
+        // Create and submit form directly
+        const tempForm = document.createElement('form');
+        tempForm.method = 'POST';
+        tempForm.action = this.action;
+        tempForm.style.display = 'none';
+        
+        for (let [key, value] of formData.entries()) {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = key;
+            input.value = value;
+            tempForm.appendChild(input);
+        }
+        
+        document.body.appendChild(tempForm);
+        tempForm.submit();
+        document.body.removeChild(tempForm);
+        
+        // Show success modal immediately
+        console.log('Form submitted successfully!');
+        successModal.style.display = 'block';
+        this.reset();
+        submitButton.innerHTML = originalText;
+        submitButton.disabled = false;
+        
+        return; // Exit early
+        
         // Use AJAX with proper error handling to prevent redirect
         console.log('Submitting form via AJAX to prevent redirect...');
         
@@ -97,7 +127,13 @@ contactForm.addEventListener('submit', async function(e) {
             const xhr = new XMLHttpRequest();
             xhr.open('POST', this.action, true);
             
+            console.log('AJAX request opened to:', this.action);
+            
             xhr.onload = () => {
+                console.log('AJAX response received:', xhr.status, xhr.statusText);
+                console.log('Response headers:', xhr.getAllResponseHeaders());
+                console.log('Response text:', xhr.responseText);
+                
                 if (xhr.status === 200 || xhr.status === 302) {
                     console.log('Form submitted successfully!');
                     // Show success modal
@@ -110,14 +146,17 @@ contactForm.addEventListener('submit', async function(e) {
                     submitButton.innerHTML = originalText;
                     submitButton.disabled = false;
                 } else {
+                    console.error('AJAX failed with status:', xhr.status);
                     throw new Error(`Form submission failed: ${xhr.status}`);
                 }
             };
             
             xhr.onerror = () => {
+                console.error('AJAX network error occurred');
                 throw new Error('Network error occurred');
             };
             
+            console.log('Sending AJAX request...');
             xhr.send(ajaxFormData);
             
         } catch (error) {
