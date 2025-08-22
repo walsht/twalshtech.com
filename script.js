@@ -68,19 +68,17 @@ contactForm.addEventListener('submit', async function(e) {
         data.recaptchaToken = recaptchaToken;
         
         // Submit form to Formspree
+        const formData = new FormData();
+        formData.append('name', data.name);
+        formData.append('email', data.email);
+        formData.append('company', data.company);
+        formData.append('service', data.service);
+        formData.append('message', data.message);
+        formData.append('g-recaptcha-response', recaptchaToken);
+        
         const response = await fetch(this.action, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name: data.name,
-                email: data.email,
-                company: data.company,
-                service: data.service,
-                message: data.message,
-                'g-recaptcha-response': recaptchaToken
-            })
+            body: formData
         });
         
         if (response.ok) {
@@ -93,7 +91,9 @@ contactForm.addEventListener('submit', async function(e) {
             // Reset reCAPTCHA
             grecaptcha.reset();
         } else {
-            throw new Error('Form submission failed');
+            const errorText = await response.text();
+            console.error('Formspree error:', response.status, errorText);
+            throw new Error(`Form submission failed: ${response.status}`);
         }
         
         // Reset button
