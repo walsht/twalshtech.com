@@ -81,49 +81,74 @@ contactForm.addEventListener('submit', async function(e) {
         console.log('Form data prepared, sending to:', this.action);
         console.log('Form data contents:', Object.fromEntries(formData));
         
-        // Use iframe submission to prevent redirect
-        console.log('Submitting form via iframe to prevent redirect...');
+        // Use AJAX with proper error handling to prevent redirect
+        console.log('Submitting form via AJAX to prevent redirect...');
         
-        // Create a hidden iframe
-        const iframe = document.createElement('iframe');
-        iframe.name = 'formspree-iframe';
-        iframe.style.display = 'none';
-        document.body.appendChild(iframe);
-        
-        // Create form that targets the iframe
-        const tempForm = document.createElement('form');
-        tempForm.method = 'POST';
-        tempForm.action = this.action;
-        tempForm.target = 'formspree-iframe';
-        tempForm.style.display = 'none';
-        
-        // Add form data
-        for (let [key, value] of formData.entries()) {
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = key;
-            input.value = value;
-            tempForm.appendChild(input);
+        try {
+            // Create form data for AJAX
+            const ajaxFormData = new FormData();
+            ajaxFormData.append('name', data.name);
+            ajaxFormData.append('email', data.email);
+            ajaxFormData.append('company', data.company);
+            ajaxFormData.append('service', data.service);
+            ajaxFormData.append('message', data.message);
+            
+            // Submit via AJAX
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', this.action, true);
+            
+            xhr.onload = () => {
+                if (xhr.status === 200 || xhr.status === 302) {
+                    console.log('Form submitted successfully!');
+                    // Show success modal
+                    successModal.style.display = 'block';
+                    
+                    // Reset the original form
+                    this.reset();
+                    
+                    // Reset button state
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                } else {
+                    throw new Error(`Form submission failed: ${xhr.status}`);
+                }
+            };
+            
+            xhr.onerror = () => {
+                throw new Error('Network error occurred');
+            };
+            
+            xhr.send(ajaxFormData);
+            
+        } catch (error) {
+            console.error('AJAX submission error:', error);
+            // Fallback to traditional submission
+            console.log('Falling back to traditional submission...');
+            
+            // Create and submit form
+            const tempForm = document.createElement('form');
+            tempForm.method = 'POST';
+            tempForm.action = this.action;
+            tempForm.style.display = 'none';
+            
+            for (let [key, value] of formData.entries()) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = value;
+                tempForm.appendChild(input);
+            }
+            
+            document.body.appendChild(tempForm);
+            tempForm.submit();
+            document.body.removeChild(tempForm);
+            
+            // Show success modal
+            successModal.style.display = 'block';
+            this.reset();
+            submitButton.innerHTML = originalText;
+            submitButton.disabled = false;
         }
-        
-        // Add form to page and submit
-        document.body.appendChild(tempForm);
-        tempForm.submit();
-        
-        // Remove temporary elements
-        document.body.removeChild(tempForm);
-        document.body.removeChild(iframe);
-        
-        // Show success modal immediately
-        console.log('Form submitted successfully!');
-        successModal.style.display = 'block';
-        
-        // Reset the original form
-        this.reset();
-        
-        // Reset button state
-        submitButton.innerHTML = originalText;
-        submitButton.disabled = false;
         
     } catch (error) {
         console.error('Error submitting form:', error);
