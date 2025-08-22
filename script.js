@@ -137,8 +137,13 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const email = 'twalsh1@gmail.com';
     
+    console.log('Email protection script loaded');
+    console.log('Looking for email elements...');
+    
     // Function to handle email reveal
     function revealEmail(element, originalText) {
+        console.log('Revealing email:', email);
+        
         // Create mailto link
         const mailtoLink = `mailto:${email}?subject=TWalsh Tech Inquiry`;
         
@@ -162,18 +167,22 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Contact info email
     const contactEmail = document.getElementById('protected-email');
+    console.log('Contact email element found:', contactEmail);
     if (contactEmail) {
         contactEmail.addEventListener('click', function() {
             revealEmail(this, '[Click to reveal]');
         });
+        console.log('Contact email click handler added');
     }
     
     // Header email
     const headerEmail = document.getElementById('header-email');
+    console.log('Header email element found:', headerEmail);
     if (headerEmail) {
         headerEmail.addEventListener('click', function() {
             revealEmail(this, '[Click to reveal email]');
         });
+        console.log('Header email click handler added');
     }
 });
 
