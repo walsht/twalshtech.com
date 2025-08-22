@@ -54,127 +54,12 @@ contactForm.addEventListener('submit', async function(e) {
         return;
     }
     
-    try {
-        // Show loading state
-        const submitButton = this.querySelector('.submit-button');
-        const originalText = submitButton.innerHTML;
-        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
-        submitButton.disabled = true;
-        
-        console.log('Starting form submission...');
-        
-        // Skip reCAPTCHA for now (NextDNS blocking)
-        console.log('Skipping reCAPTCHA due to DNS blocking');
-        const recaptchaToken = 'skipped';
-        
-        // Create form data
-        const formData = new FormData();
-        formData.append('name', data.name);
-        formData.append('email', data.email);
-        formData.append('company', data.company);
-        formData.append('service', data.service);
-        formData.append('message', data.message);
-        
-        // reCAPTCHA disabled due to DNS blocking
-        // No spam protection for now
-        
-        console.log('Form data prepared, sending to:', this.action);
-        console.log('Form data contents:', Object.fromEntries(formData));
-        
-        // Test simple form submission first
-        console.log('Testing simple form submission...');
-        
-        // Create and submit form directly
-        const tempForm = document.createElement('form');
-        tempForm.method = 'POST';
-        tempForm.action = this.action;
-        tempForm.style.display = 'none';
-        
-        for (let [key, value] of formData.entries()) {
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = key;
-            input.value = value;
-            tempForm.appendChild(input);
-        }
-        
-        // Add form to page
-        document.body.appendChild(tempForm);
-        
-        // Submit form and immediately prevent redirect
-        tempForm.submit();
-        
-        // Remove form immediately
-        document.body.removeChild(tempForm);
-        
-        // Show success modal immediately
-        console.log('Form submitted successfully!');
-        successModal.style.display = 'block';
-        this.reset();
-        submitButton.innerHTML = originalText;
-        submitButton.disabled = false;
-        
-        // Prevent any redirects
-        setTimeout(() => {
-            if (window.location.href.includes('formspree.io')) {
-                window.history.back();
-            }
-        }, 100);
-        
-        return; // Exit early
-        
-        // Use AJAX with proper error handling to prevent redirect
-        console.log('Submitting form via AJAX to prevent redirect...');
-        
-        try {
-            // Create form data for AJAX
-            const ajaxFormData = new FormData();
-            ajaxFormData.append('name', data.name);
-            ajaxFormData.append('email', data.email);
-            ajaxFormData.append('company', data.company);
-            ajaxFormData.append('service', data.service);
-            ajaxFormData.append('message', data.message);
-            
-            // Submit via AJAX
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', this.action, true);
-            
-            console.log('AJAX request opened to:', this.action);
-            
-            xhr.onload = () => {
-                console.log('AJAX response received:', xhr.status, xhr.statusText);
-                console.log('Response headers:', xhr.getAllResponseHeaders());
-                console.log('Response text:', xhr.responseText);
-                
-                if (xhr.status === 200 || xhr.status === 302) {
-                    console.log('Form submitted successfully!');
-                    // Show success modal
-                    successModal.style.display = 'block';
-                    
-                    // Reset the original form
-                    this.reset();
-                    
-                    // Reset button state
-                    submitButton.innerHTML = originalText;
-                    submitButton.disabled = false;
-                } else {
-                    console.error('AJAX failed with status:', xhr.status);
-                    throw new Error(`Form submission failed: ${xhr.status}`);
-                }
-            };
-            
-            xhr.onerror = () => {
-                console.error('AJAX network error occurred');
-                throw new Error('Network error occurred');
-            };
-            
-            console.log('Sending AJAX request...');
-            xhr.send(ajaxFormData);
-            
-        } catch (error) {
-            console.error('AJAX submission error:', error);
-            // Fallback to traditional submission
-            console.log('Falling back to traditional submission...');
+            try {
+            // Show loading state
+            const submitButton = this.querySelector('.submit-button');
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitButton.disabled = true;
             
             // Create and submit form
             const tempForm = document.createElement('form');
@@ -199,7 +84,8 @@ contactForm.addEventListener('submit', async function(e) {
             this.reset();
             submitButton.innerHTML = originalText;
             submitButton.disabled = false;
-        }
+        
+
         
     } catch (error) {
         console.error('Error submitting form:', error);
