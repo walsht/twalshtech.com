@@ -291,11 +291,25 @@ body {
     color: #4b5563;
 }
 
-.contact-item i {
-    width: 20px;
-    margin-right: 1rem;
-    color: #2563eb;
-}
+    .contact-item i {
+        width: 20px;
+        margin-right: 1rem;
+        color: #2563eb;
+    }
+
+    #protected-email,
+    #header-email {
+        cursor: pointer;
+        color: #2563eb;
+        text-decoration: underline;
+        transition: all 0.3s ease;
+    }
+
+    #protected-email:hover,
+    #header-email:hover {
+        color: #1d4ed8;
+        text-decoration: none;
+    }
 
 .contact-form {
     background: white;

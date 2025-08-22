@@ -133,6 +133,50 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Protected email display
+document.addEventListener('DOMContentLoaded', () => {
+    const email = 'twalsh1@gmail.com';
+    
+    // Function to handle email reveal
+    function revealEmail(element, originalText) {
+        // Create mailto link
+        const mailtoLink = `mailto:${email}?subject=TWalsh Tech Inquiry`;
+        
+        // Open email client
+        window.location.href = mailtoLink;
+        
+        // Also copy to clipboard
+        navigator.clipboard.writeText(email).then(() => {
+            element.textContent = email;
+            element.style.color = '#10b981';
+            element.style.cursor = 'default';
+            
+            // Reset after 5 seconds
+            setTimeout(() => {
+                element.textContent = originalText;
+                element.style.color = '';
+                element.style.cursor = 'pointer';
+            }, 5000);
+        });
+    }
+    
+    // Contact info email
+    const contactEmail = document.getElementById('protected-email');
+    if (contactEmail) {
+        contactEmail.addEventListener('click', function() {
+            revealEmail(this, '[Click to reveal]');
+        });
+    }
+    
+    // Header email
+    const headerEmail = document.getElementById('header-email');
+    if (headerEmail) {
+        headerEmail.addEventListener('click', function() {
+            revealEmail(this, '[Click to reveal email]');
+        });
+    }
+});
+
 // Form field focus effects
 document.querySelectorAll('.form-group input, .form-group textarea, .form-group select').forEach(field => {
     field.addEventListener('focus', function() {
