@@ -35,20 +35,32 @@ const contactForm = document.getElementById('contactForm');
 contactForm.addEventListener('submit', async function(e) {
     e.preventDefault();
     
+    // Check internet connectivity
+    if (!navigator.onLine) {
+        alert('Please check your internet connection and try again.');
+        return;
+    }
+    
     // Get form data
     const formData = new FormData(this);
     const data = Object.fromEntries(formData);
     
-    // Basic validation
+    // Enhanced validation with better error messages
     if (!data.name || !data.email || !data.message) {
-        alert('Please fill in all required fields.');
+        alert('Please fill in all required fields (Name, Email, and Message are required).');
         return;
     }
     
-    // Email validation
+    // Enhanced email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(data.email)) {
-        alert('Please enter a valid email address.');
+        alert('Please enter a valid email address (e.g., user@example.com).');
+        return;
+    }
+    
+    // Validate message length
+    if (data.message.length < 10) {
+        alert('Please provide a more detailed message (at least 10 characters).');
         return;
     }
     
@@ -262,3 +274,60 @@ if (messageTextarea) {
         this.style.height = this.scrollHeight + 'px';
     });
 }
+
+// Interactive hover effects for service cards
+document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-8px) scale(1.02)';
+        this.style.boxShadow = '0 20px 40px rgba(5, 150, 105, 0.15)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+        this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+    });
+});
+
+// Interactive hover effects for portfolio items
+document.querySelectorAll('.portfolio-item').forEach(item => {
+    item.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-5px)';
+        this.style.boxShadow = '0 15px 35px rgba(5, 150, 105, 0.12)';
+    });
+    
+    item.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.08)';
+    });
+});
+
+// Interactive hover effects for testimonials
+document.querySelectorAll('.testimonial').forEach(testimonial => {
+    testimonial.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.02)';
+        this.style.boxShadow = '0 12px 30px rgba(5, 150, 105, 0.1)';
+    });
+    
+    testimonial.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+        this.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.06)';
+    });
+});
+
+// Smooth reveal animations on scroll
+const animateOnScroll = () => {
+    const elements = document.querySelectorAll('.service-card, .portfolio-item, .testimonial, .about-content');
+    
+    elements.forEach((el, index) => {
+        const elementTop = el.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+            el.classList.add('visible');
+        }
+    });
+};
+
+// Add scroll event listener for animations
+window.addEventListener('scroll', animateOnScroll);
+window.addEventListener('load', animateOnScroll);
