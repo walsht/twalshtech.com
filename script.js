@@ -52,7 +52,7 @@ contactForm.addEventListener('submit', async function(e) {
         return;
     }
     
-            try {
+        try {
             // Show loading state
             const submitButton = this.querySelector('.submit-button');
             const originalText = submitButton.innerHTML;
@@ -81,10 +81,7 @@ contactForm.addEventListener('submit', async function(e) {
             this.reset();
             submitButton.innerHTML = originalText;
             submitButton.disabled = false;
-        
-
-        
-    } catch (error) {
+        } catch (error) {
         console.error('Error submitting form:', error);
         alert(`There was an error sending your message: ${error.message}. Please try again.`);
         
