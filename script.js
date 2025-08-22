@@ -139,11 +139,32 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
     
-    // Function to handle email reveal
+    // Function to reveal email (on hover or click)
     function revealEmail(element, originalText) {
-        // Check if email is already revealed
+        // If email is already revealed, don't do anything
         if (element.textContent === email) {
-            // Email is already shown, open mailto link
+            return;
+        }
+        
+        // Reveal email and copy to clipboard
+        navigator.clipboard.writeText(email).then(() => {
+            element.textContent = email;
+            element.style.color = '#10b981';
+            element.style.cursor = 'pointer';
+            element.title = 'Click to open email client';
+        }).catch(() => {
+            // Fallback if clipboard fails
+            element.textContent = email;
+            element.style.color = '#10b981';
+            element.style.cursor = 'pointer';
+            element.title = 'Click to open email client';
+        });
+    }
+    
+    // Function to open mailto link (when clicking on revealed email)
+    function openMailto(element, originalText) {
+        if (element.textContent === email) {
+            // Email is visible, open mailto link
             const mailtoLink = `mailto:${email}?subject=TWalsh Tech Inquiry`;
             
             // Try multiple methods to open mailto link
@@ -164,75 +185,38 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.body.removeChild(tempLink);
                 }
             }
-            return;
         }
-        
-        // First click - reveal email and copy to clipboard
-        // Try to open mailto link first with multiple methods
-        const mailtoLink = `mailto:${email}?subject=TWalsh Tech Inquiry`;
-        try {
-            // Method 1: Direct window.location
-            window.location.href = mailtoLink;
-        } catch (error) {
-            try {
-                // Method 2: window.open
-                window.open(mailtoLink, '_blank');
-            } catch (error2) {
-                // Method 3: Create and click temporary link
-                const tempLink = document.createElement('a');
-                tempLink.href = mailtoLink;
-                tempLink.style.display = 'none';
-                document.body.appendChild(tempLink);
-                tempLink.click();
-                document.body.removeChild(tempLink);
-            }
-        }
-        
-        // Always copy to clipboard and show email
-        navigator.clipboard.writeText(email).then(() => {
-            element.textContent = email;
-            element.style.color = '#10b981';
-            element.style.cursor = 'pointer';
-            
-            // Add mailto instruction
-            element.title = 'Email copied! Click again to open email client.';
-            
-            // Reset after 10 seconds (longer for better UX)
-            setTimeout(() => {
-                element.textContent = originalText;
-                element.style.color = '';
-                element.style.cursor = 'pointer';
-                element.title = '';
-            }, 10000);
-        }).catch(() => {
-            // Fallback if clipboard fails
-            element.textContent = email;
-            element.style.color = '#10b981';
-            element.style.cursor = 'pointer';
-            element.title = 'Email revealed! Click again to open email client.';
-            
-            setTimeout(() => {
-                element.textContent = originalText;
-                element.style.color = '';
-                element.style.cursor = 'pointer';
-                element.title = '';
-            }, 10000);
-        });
     }
     
     // Contact info email
     const contactEmail = document.getElementById('protected-email');
     if (contactEmail) {
-        contactEmail.addEventListener('click', function() {
+        // Reveal on hover or click
+        contactEmail.addEventListener('mouseenter', function() {
             revealEmail(this, '[Click to reveal]');
+        });
+        contactEmail.addEventListener('click', function() {
+            if (this.textContent === email) {
+                openMailto(this, '[Click to reveal]');
+            } else {
+                revealEmail(this, '[Click to reveal]');
+            }
         });
     }
     
     // Header email
     const headerEmail = document.getElementById('header-email');
     if (headerEmail) {
-        headerEmail.addEventListener('click', function() {
+        // Reveal on hover or click
+        headerEmail.addEventListener('mouseenter', function() {
             revealEmail(this, '[Click to reveal email]');
+        });
+        headerEmail.addEventListener('click', function() {
+            if (this.textContent === email) {
+                openMailto(this, '[Click to reveal email]');
+            } else {
+                revealEmail(this, '[Click to reveal email]');
+            }
         });
     }
 });
