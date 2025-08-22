@@ -137,52 +137,100 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const email = 'twalsh1@gmail.com';
     
-    console.log('Email protection script loaded');
-    console.log('Looking for email elements...');
+    // Function to show copy confirmation message
+    function showCopyMessage(element, message) {
+        // Create or update message element
+        let messageEl = document.getElementById('copy-message');
+        if (!messageEl) {
+            messageEl = document.createElement('div');
+            messageEl.id = 'copy-message';
+            messageEl.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #10b981;
+                color: white;
+                padding: 12px 20px;
+                border-radius: 6px;
+                font-weight: 500;
+                z-index: 1000;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            `;
+            document.body.appendChild(messageEl);
+        }
+        
+        messageEl.textContent = message;
+        messageEl.style.transform = 'translateX(0)';
+        
+        // Hide after 3 seconds
+        setTimeout(() => {
+            messageEl.style.transform = 'translateX(100%)';
+        }, 3000);
+    }
     
     // Function to handle email reveal
     function revealEmail(element, originalText) {
-        console.log('Revealing email:', email);
+        // Try to open mailto link first
+        try {
+            const mailtoLink = `mailto:${email}?subject=TWalsh Tech Inquiry`;
+            window.open(mailtoLink, '_blank');
+        } catch (error) {
+            console.log('Mailto link failed, showing email directly');
+        }
         
-        // Create mailto link
-        const mailtoLink = `mailto:${email}?subject=TWalsh Tech Inquiry`;
-        
-        // Open email client
-        window.location.href = mailtoLink;
-        
-        // Also copy to clipboard
+        // Always copy to clipboard and show email
         navigator.clipboard.writeText(email).then(() => {
             element.textContent = email;
             element.style.color = '#10b981';
             element.style.cursor = 'default';
             
-            // Reset after 5 seconds
+            // Add copy confirmation
+            element.title = 'Email copied to clipboard! Click to copy again.';
+            
+            // Show success message
+            showCopyMessage(element, 'Email copied to clipboard!');
+            
+            // Reset after 10 seconds (longer for better UX)
             setTimeout(() => {
                 element.textContent = originalText;
                 element.style.color = '';
                 element.style.cursor = 'pointer';
-            }, 5000);
+                element.title = '';
+            }, 10000);
+        }).catch(() => {
+            // Fallback if clipboard fails
+            element.textContent = email;
+            element.style.color = '#10b981';
+            element.style.cursor = 'default';
+            element.title = 'Email revealed!';
+            
+            showCopyMessage(element, 'Email revealed!');
+            
+            setTimeout(() => {
+                element.textContent = originalText;
+                element.style.color = '';
+                element.style.cursor = 'pointer';
+                element.title = '';
+            }, 10000);
         });
     }
     
     // Contact info email
     const contactEmail = document.getElementById('protected-email');
-    console.log('Contact email element found:', contactEmail);
     if (contactEmail) {
         contactEmail.addEventListener('click', function() {
             revealEmail(this, '[Click to reveal]');
         });
-        console.log('Contact email click handler added');
     }
     
     // Header email
     const headerEmail = document.getElementById('header-email');
-    console.log('Header email element found:', headerEmail);
     if (headerEmail) {
         headerEmail.addEventListener('click', function() {
             revealEmail(this, '[Click to reveal email]');
         });
-        console.log('Header email click handler added');
     }
 });
 
