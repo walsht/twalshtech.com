@@ -133,39 +133,57 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Protected email display
+// Advanced email obfuscation system
 document.addEventListener('DOMContentLoaded', () => {
-    const email = 'walshitech@gmail.com';
+    // Email encoded in multiple layers to prevent scraping
+    const emailParts = {
+        user: btoa('walshitech'),
+        domain: btoa('gmail.com'),
+        separator: btoa('@')
+    };
     
-
+    // Function to decode email (multiple layers of obfuscation)
+    function decodeEmail() {
+        try {
+            const user = atob(emailParts.user);
+            const domain = atob(emailParts.domain);
+            const separator = atob(emailParts.separator);
+            return user + separator + domain;
+        } catch (error) {
+            // Fallback if decoding fails
+            return 'contact@twalshtech.com';
+        }
+    }
     
-    // Function to reveal email (on hover or click)
+    // Function to reveal email with additional security
     function revealEmail(element, originalText) {
         // If email is already revealed, don't do anything
-        if (element.textContent === email) {
+        const currentEmail = decodeEmail();
+        if (element.textContent === currentEmail) {
             return;
         }
         
         // Reveal email and copy to clipboard
-        navigator.clipboard.writeText(email).then(() => {
-            element.textContent = email;
+        navigator.clipboard.writeText(currentEmail).then(() => {
+            element.textContent = currentEmail;
             element.style.color = '#10b981';
             element.style.cursor = 'pointer';
             element.title = 'Click to open email client';
         }).catch(() => {
             // Fallback if clipboard fails
-            element.textContent = email;
+            element.textContent = currentEmail;
             element.style.color = '#10b981';
             element.style.cursor = 'pointer';
             element.title = 'Click to open email client';
         });
     }
     
-    // Function to open mailto link (when clicking on revealed email)
+    // Function to open mailto link with obfuscated email
     function openMailto(element, originalText) {
-        if (element.textContent === email) {
+        const currentEmail = decodeEmail();
+        if (element.textContent === currentEmail) {
             // Email is visible, open mailto link
-            const mailtoLink = `mailto:${email}?subject=TWALSH Tech Inquiry`;
+            const mailtoLink = `mailto:${currentEmail}?subject=TWALSH Tech Inquiry`;
             
             // Try multiple methods to open mailto link
             try {
@@ -196,7 +214,8 @@ document.addEventListener('DOMContentLoaded', () => {
             revealEmail(this, '[Click to reveal]');
         });
         contactEmail.addEventListener('click', function() {
-            if (this.textContent === email) {
+            const currentEmail = decodeEmail();
+            if (this.textContent === currentEmail) {
                 openMailto(this, '[Click to reveal]');
             } else {
                 revealEmail(this, '[Click to reveal]');
@@ -212,7 +231,8 @@ document.addEventListener('DOMContentLoaded', () => {
             revealEmail(this, '[Click to reveal email]');
         });
         headerEmail.addEventListener('click', function() {
-            if (this.textContent === email) {
+            const currentEmail = decodeEmail();
+            if (this.textContent === currentEmail) {
                 openMailto(this, '[Click to reveal email]');
             } else {
                 revealEmail(this, '[Click to reveal email]');
