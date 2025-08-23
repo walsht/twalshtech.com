@@ -331,3 +331,65 @@ const animateOnScroll = () => {
 // Add scroll event listener for animations
 window.addEventListener('scroll', animateOnScroll);
 window.addEventListener('load', animateOnScroll);
+
+// Image Modal Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    const modalClose = document.getElementById('modalClose');
+    const clickableImages = document.querySelectorAll('.clickable-image');
+
+    // Open modal when clicking on images
+    clickableImages.forEach(img => {
+        img.addEventListener('click', function() {
+            const imageSrc = this.getAttribute('data-image');
+            const imageTitle = this.getAttribute('data-title');
+            const imageDescription = this.getAttribute('data-description');
+
+            modalImage.src = imageSrc;
+            modalImage.alt = imageTitle;
+            modalTitle.textContent = imageTitle;
+            modalDescription.textContent = imageDescription;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        });
+    });
+
+    // Close modal when clicking close button
+    modalClose.addEventListener('click', closeModal);
+
+    // Close modal when clicking on backdrop
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal || e.target.classList.contains('modal-backdrop')) {
+            closeModal();
+        }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    // Add smooth hover effects for clickable images
+    clickableImages.forEach(img => {
+        img.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05)';
+            this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.15)';
+        });
+        
+        img.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+        });
+    });
+});

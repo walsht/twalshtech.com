@@ -419,13 +419,340 @@ body {
         box-shadow: 0 10px 20px rgba(0, 122, 255, 0.3);
     }
 
+/* Featured Project Section */
+.featured-project {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+}
 
+.featured-project h2 {
+    text-align: center;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.featured-project .section-subtitle {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+}
+
+.project-overview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    align-items: start;
+}
+
+.project-description h3 {
+    color: #1f2937;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.project-description p {
+    color: #4b5563;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.project-description ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.project-description li {
+    color: #4b5563;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.project-images {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.image-comparison {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.image-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.image-container {
+    text-align: center;
+}
+
+.image-container h4 {
+    color: #374151;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.project-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.project-image:hover {
+    transform: scale(1.02);
+}
+
+.project-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.detail-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.detail-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.detail-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #059669, #10b981);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.detail-icon i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.detail-card h4 {
+    color: #1f2937;
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.detail-card p {
+    color: #6b7280;
+    line-height: 1.6;
+    font-size: 0.875rem;
+}
+
+/* Responsive Design for Featured Project */
+@media (max-width: 768px) {
+    .project-overview {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .image-pair {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .project-details {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+/* Image Modal Styles */
+.image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.image-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.image-modal.active .modal-content {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.modal-close:hover {
+    background: white;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close i {
+    font-size: 1.2rem;
+    color: #374151;
+}
+
+.modal-image-container {
+    width: 100%;
+    max-height: 70vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.modal-image {
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+    object-fit: contain;
+    display: block;
+}
+
+.modal-caption {
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+}
+
+.modal-caption h3 {
+    color: #1f2937;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.modal-caption p {
+    color: #4b5563;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* Clickable Image Styles */
+.clickable-image {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.clickable-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Modal Animation Keyframes */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes backdropFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive Modal */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        max-height: 95vh;
+    }
+    
+    .modal-caption {
+        padding: 1.5rem;
+    }
+    
+    .modal-caption h3 {
+        font-size: 1.25rem;
+    }
+    
+    .modal-close {
+        width: 40px;
+        height: 40px;
+        top: 15px;
+        right: 15px;
+    }
+}
 
 /* Portfolio Section */
 .portfolio {
     padding: 5rem 0;
     background: #f8fafc;
-    display: none; /* Hide the portfolio section */
 }
 
 .portfolio-grid {
@@ -491,7 +818,6 @@ body {
 .testimonials {
     padding: 5rem 0;
     background: white;
-    display: none; /* Hide the testimonials section */
 }
 
 .testimonial-grid {
