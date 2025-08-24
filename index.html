@@ -404,9 +404,9 @@
 
             <script src="script.js?v=33"></script>
         
-        <!-- Uptime Monitoring -->
+        <!-- Enhanced Analytics Tracking -->
         <script>
-            // Simple uptime monitoring
+            // Enhanced analytics tracking
             window.addEventListener('load', function() {
                 // Send page load event to GA
                 if (typeof gtag !== 'undefined') {
@@ -432,18 +432,185 @@
                 }
             });
             
+            // Enhanced scroll depth tracking
+            document.addEventListener('DOMContentLoaded', function() {
+                let maxScroll = 0;
+                let scrollEvents = [25, 50, 75, 90];
+                let scrollEventsSent = new Set();
+                
+                window.addEventListener('scroll', function() {
+                    const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+                    
+                    // Track scroll depth milestones
+                    scrollEvents.forEach(event => {
+                        if (scrollPercent >= event && !scrollEventsSent.has(event)) {
+                            scrollEventsSent.add(event);
+                            if (typeof gtag !== 'undefined') {
+                                gtag('event', 'scroll', {
+                                    'event_category': 'engagement',
+                                    'event_label': `scroll_depth_${event}%`,
+                                    'value': event
+                                });
+                            }
+                        }
+                    });
+                    
+                    // Track max scroll depth
+                    if (scrollPercent > maxScroll) {
+                        maxScroll = scrollPercent;
+                    }
+                });
+                
+                // Send max scroll depth on page unload
+                window.addEventListener('beforeunload', function() {
+                    if (typeof gtag !== 'undefined' && maxScroll > 0) {
+                        gtag('event', 'scroll', {
+                            'event_category': 'engagement',
+                            'event_label': 'max_scroll_depth',
+                            'value': maxScroll
+                        });
+                    }
+                });
+            });
+            
+            // Enhanced image interaction tracking
+            document.addEventListener('DOMContentLoaded', function() {
+                // Track image clicks
+                const clickableImages = document.querySelectorAll('.clickable-image');
+                clickableImages.forEach((img, index) => {
+                    img.addEventListener('click', function() {
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'image_click', {
+                                'event_category': 'engagement',
+                                'event_label': `project_image_${index + 1}`,
+                                'value': 1
+                            });
+                        }
+                    });
+                });
+                
+                // Track image hover engagement
+                clickableImages.forEach((img, index) => {
+                    let hoverStartTime;
+                    let hoverDuration = 0;
+                    
+                    img.addEventListener('mouseenter', function() {
+                        hoverStartTime = Date.now();
+                    });
+                    
+                    img.addEventListener('mouseleave', function() {
+                        if (hoverStartTime) {
+                            hoverDuration = Date.now() - hoverStartTime;
+                            if (hoverDuration > 1000 && typeof gtag !== 'undefined') { // Only track hovers longer than 1 second
+                                gtag('event', 'image_hover', {
+                                    'event_category': 'engagement',
+                                    'event_label': `project_image_${index + 1}_hover`,
+                                    'value': Math.round(hoverDuration / 1000)
+                                });
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Enhanced section engagement tracking
+            document.addEventListener('DOMContentLoaded', function() {
+                const sections = ['home', 'services', 'featured-project', 'about', 'contact'];
+                const sectionObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && typeof gtag !== 'undefined') {
+                            gtag('event', 'section_view', {
+                                'event_category': 'engagement',
+                                'event_label': entry.target.id,
+                                'value': 1
+                            });
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                sections.forEach(sectionId => {
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        sectionObserver.observe(section);
+                    }
+                });
+            });
+            
+            // Enhanced button and CTA tracking
+            document.addEventListener('DOMContentLoaded', function() {
+                // Track CTA button clicks
+                const ctaButtons = document.querySelectorAll('.cta-button, .submit-button');
+                ctaButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'cta_click', {
+                                'event_category': 'engagement',
+                                'event_label': button.textContent.trim() || 'cta_button',
+                                'value': 1
+                            });
+                            console.log('CTA click tracked:', button.textContent.trim());
+                        }
+                    });
+                });
+                
+                // Track navigation menu usage
+                const navLinks = document.querySelectorAll('.nav-menu a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'navigation_click', {
+                                'event_category': 'engagement',
+                                'event_label': link.textContent.trim(),
+                                'value': 1
+                            });
+                        }
+                    });
+                });
+            });
+            
             // Monitor form interactions
             document.addEventListener('DOMContentLoaded', function() {
                 const form = document.getElementById('contactForm');
                 if (form && typeof gtag !== 'undefined') {
+                    // Track form field focus
+                    const formFields = form.querySelectorAll('input, textarea, select');
+                    formFields.forEach(field => {
+                        field.addEventListener('focus', function() {
+                            gtag('event', 'form_field_focus', {
+                                'event_category': 'engagement',
+                                'event_label': field.name || 'unknown_field',
+                                'value': 1
+                            });
+                        });
+                    });
+                    
+                    // Track form submission
                     form.addEventListener('submit', function() {
                         gtag('event', 'form_submit', {
                             'event_category': 'engagement',
-                            'event_label': 'contact_form'
+                            'event_label': 'contact_form',
+                            'value': 1
                         });
                     });
                 }
             });
+            
+            // Time on page tracking
+            document.addEventListener('DOMContentLoaded', function() {
+                const startTime = Date.now();
+                
+                window.addEventListener('beforeunload', function() {
+                    const timeOnPage = Math.round((Date.now() - startTime) / 1000);
+                    if (typeof gtag !== 'undefined' && timeOnPage > 5) { // Only track if user spent more than 5 seconds
+                        gtag('event', 'time_on_page', {
+                            'event_category': 'engagement',
+                            'event_label': 'homepage',
+                            'value': timeOnPage
+                        });
+                    }
+                });
+            });
         </script>
     </body>
     </html>
+

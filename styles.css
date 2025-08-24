@@ -570,7 +570,7 @@ body {
 
 .detail-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 25px rgba(5, 150, 105, 0.15);
 }
 
 .detail-icon {
@@ -1148,6 +1148,43 @@ body {
 .author-info span {
     color: #6b7280;
     font-size: 0.9rem;
+}
+
+/* Prevent text selection on main content areas */
+.hero,
+.services,
+.featured-project,
+.about,
+.contact,
+.portfolio,
+.testimonials,
+.navbar,
+.footer,
+.service-card,
+.portfolio-item,
+.testimonial,
+.detail-card,
+.project-description,
+.project-images,
+.project-details {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Allow text selection for form elements and contact info */
+.form-group input,
+.form-group textarea,
+.form-group select,
+.contact-info,
+.contact-item,
+#protected-email,
+#header-email {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
 /* Footer */
