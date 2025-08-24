@@ -446,6 +446,10 @@ body {
     gap: 3rem;
     margin-bottom: 3rem;
     align-items: start;
+    /* Safari iOS grid fixes */
+    -webkit-display: grid;
+    -webkit-grid-template-columns: 1fr 1fr;
+    width: 100%;
 }
 
 .project-description h3 {
@@ -488,12 +492,20 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+    width: 100%;
+    /* Safari iOS grid fixes */
+    -webkit-display: grid;
+    -webkit-grid-template-columns: 1fr 1fr;
 }
 
 .image-container {
     text-align: center;
     max-width: 100%;
     overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .image-container h4 {
@@ -519,20 +531,24 @@ body {
     -webkit-user-select: none;
     -webkit-touch-callout: none;
     -webkit-tap-highlight-color: transparent;
+    /* Safari iOS specific fixes */
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+    /* Force hardware acceleration */
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    /* Prevent Safari from stretching images */
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .project-image:hover {
     transform: scale(1.02);
-}
-
-/* Safari-specific fixes */
-@supports (-webkit-touch-callout: none) {
-    .project-image {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        backface-visibility: hidden;
-        perspective: 1000px;
-    }
+    -webkit-transform: scale(1.02);
 }
 
 .project-details {
@@ -606,38 +622,107 @@ body {
     .project-image {
         max-height: 250px;
         object-fit: contain;
+        /* Mobile Safari fixes */
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
     }
 }
 
-/* Safari Mobile Specific Fixes */
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
+/* iOS Safari specific fixes - more aggressive */
+@supports (-webkit-touch-callout: none) {
     .project-image {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
+        /* Force proper sizing on iOS Safari */
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        max-height: 200px !important;
+        object-fit: contain !important;
+        /* Prevent Safari from stretching */
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-box-sizing: border-box !important;
+        box-sizing: border-box !important;
+        /* Force hardware acceleration */
+        -webkit-transform-style: preserve-3d !important;
+        transform-style: preserve-3d !important;
+        /* Prevent inline display */
+        display: block !important;
+        float: none !important;
+        clear: both !important;
     }
     
     .image-container {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-/* iOS Safari specific fixes */
-@supports (-webkit-touch-callout: none) and (max-width: 768px) {
-    .project-image {
-        max-height: 200px;
-        object-fit: contain;
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
+        /* Force container constraints */
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        /* Prevent Safari layout issues */
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
     }
     
     .image-pair {
-        gap: 0.75rem;
+        gap: 0.75rem !important;
+        width: 100% !important;
     }
     
     .image-container h4 {
-        font-size: 0.75rem;
-        margin-bottom: 0.25rem;
+        font-size: 0.75rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+}
+
+/* Additional iOS Safari fixes */
+@media only screen and (max-device-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+    .project-image {
+        /* iPhone specific fixes */
+        max-height: 180px !important;
+        object-fit: contain !important;
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+    }
+}
+
+/* Nuclear option for Safari iOS - force everything */
+@supports (-webkit-touch-callout: none) and (max-width: 768px) {
+    .project-overview {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 2rem !important;
+    }
+    
+    .image-pair {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1rem !important;
+        width: 100% !important;
+    }
+    
+    .image-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 1 !important;
+    }
+    
+    .project-image {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        max-height: 200px !important;
+        object-fit: contain !important;
+        display: block !important;
+        float: none !important;
+        clear: both !important;
+        /* Force Safari to respect dimensions */
+        -webkit-transform: translate3d(0, 0, 0) !important;
+        transform: translate3d(0, 0, 0) !important;
+        -webkit-box-sizing: border-box !important;
+        box-sizing: border-box !important;
     }
 }
 
