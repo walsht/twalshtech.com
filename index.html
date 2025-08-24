@@ -24,8 +24,8 @@
     <meta name="twitter:image" content="https://twalshtech.com/logo_2000.png">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5ZEXP6EV5C"></script>
@@ -43,6 +43,10 @@
         });
     </script>
     
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -53,14 +57,19 @@
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "TWALSH Tech",
+      "alternateName": "Walsh iTechnology LLC",
       "description": "Professional UniFi system implementation and management for Network, Talk, Protect, and Access solutions",
       "url": "https://twalshtech.com",
-      "logo": "https://twalshtech.com/logo_2000.png",
-      "image": "https://twalshtech.com/logo_2000.png",
+      "logo": "https://twalshtech.com/images/logo_2000.png",
+      "image": "https://twalshtech.com/images/logo_2000.png",
       "contactPoint": {
         "@type": "ContactPoint",
         "email": "walshitech@gmail.com",
         "contactType": "customer service"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "US"
       },
       "serviceType": "Network Infrastructure and Security Solutions",
       "areaServed": "Business and Organizations",
@@ -72,32 +81,60 @@
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "UniFi Network Solutions"
+              "name": "UniFi Network Solutions",
+              "description": "Enterprise-grade wireless networking with advanced management, monitoring, and analytics"
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "UniFi Talk VoIP Systems"
+              "name": "UniFi Talk VoIP Systems",
+              "description": "Professional VoIP phone systems with advanced calling features and integration"
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "UniFi Protect Security"
+              "name": "UniFi Protect Security",
+              "description": "Comprehensive video surveillance systems with AI-powered detection"
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "UniFi Access Control"
+              "name": "UniFi Access Control",
+              "description": "Smart access control systems with mobile credentials and visitor management"
             }
           }
         ]
-      }
+      },
+      "sameAs": [
+        "https://twalshtech.com"
+      ]
+    }
+    </script>
+    
+    <!-- Project Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "Our Lady at the Pillar School Network Infrastructure Project",
+      "description": "Complete network infrastructure transformation and modernization project",
+      "creator": {
+        "@type": "Organization",
+        "name": "TWALSH Tech"
+      },
+      "dateCreated": "2025-01",
+      "genre": "Network Infrastructure",
+      "keywords": "UniFi, network modernization, infrastructure, school technology",
+      "image": [
+        "https://twalshtech.com/images/office-closet-before-after.jpg",
+        "https://twalshtech.com/images/school-closet-before-after.jpg"
+      ]
     }
     </script>
 
@@ -107,7 +144,7 @@
     <nav class="navbar">
         <div class="nav-container">
                             <div class="nav-logo">
-                    <img src="LOGO_FINAL.png" alt="TWALSH Tech" class="logo-img">
+                    <img src="images/LOGO_FINAL.png" alt="TWALSH Tech" class="logo-img">
                     <h2>TWALSH Tech</h2>
                 </div>
             <ul class="nav-menu">
@@ -130,7 +167,7 @@
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-logo">
-                    <img src="LOGO_FINAL.png" alt="TWALSH Tech" class="hero-logo-img">
+                    <img src="images/LOGO_FINAL.png" alt="TWALSH Tech" class="hero-logo-img">
                 </div>
                 <h1>TWALSH Tech</h1>
                 <p>Professional implementation and management of UniFi systems including Network, Talk, Protect, and Access solutions for businesses and organizations.</p>
@@ -147,6 +184,12 @@
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <div class="breadcrumb-list">
+                    <div class="breadcrumb-item"><a href="#home">Home</a></div>
+                    <div class="breadcrumb-item" aria-current="page">Services</div>
+                </div>
+            </nav>
             <h2>UniFi Solutions</h2>
             <p class="section-subtitle">Comprehensive network infrastructure and security solutions</p>
             
@@ -189,6 +232,12 @@
     <!-- Featured Project Section -->
     <section id="featured-project" class="featured-project">
         <div class="container">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <div class="breadcrumb-list">
+                    <div class="breadcrumb-item"><a href="#home">Home</a></div>
+                    <div class="breadcrumb-item" aria-current="page">Featured Project</div>
+                </div>
+            </nav>
             <h2>Featured Project: Our Lady at the Pillar School</h2>
             <p class="section-subtitle">Complete network infrastructure transformation and modernization</p>
             
@@ -213,14 +262,16 @@
                                 <img src="images/office-closet-before-after.jpg" alt="Office network closet transformation" class="project-image clickable-image" 
                                      data-image="images/office-closet-before-after.jpg" 
                                      data-title="Office Network Closet Transformation" 
-                                     data-description="Complete network infrastructure overhaul showing the dramatic improvement in cable management, equipment organization, and professional rack implementation.">
+                                     data-description="Complete network infrastructure overhaul showing the dramatic improvement in cable management, equipment organization, and professional rack implementation."
+                                     loading="lazy">
                             </div>
                             <div class="image-container">
                                 <h4>School Network Closet</h4>
                                 <img src="images/school-closet-before-after.jpg" alt="School network closet transformation" class="project-image clickable-image" 
                                      data-image="images/school-closet-before-after.jpg" 
                                      data-title="School Network Closet Transformation" 
-                                     data-description="Network closet modernization demonstrating the transformation from disorganized wiring to a clean, professional, and maintainable infrastructure setup.">
+                                     data-description="Network closet modernization demonstrating the transformation from disorganized wiring to a clean, professional, and maintainable infrastructure setup."
+                                     loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -284,6 +335,12 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <div class="breadcrumb-list">
+                    <div class="breadcrumb-item"><a href="#home">Home</a></div>
+                    <div class="breadcrumb-item" aria-current="page">About</div>
+                </div>
+            </nav>
             <div class="about-content">
                 <div class="about-text">
                     <h2>About TWALSH Tech</h2>
@@ -311,6 +368,12 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <div class="breadcrumb-list">
+                    <div class="breadcrumb-item"><a href="#home">Home</a></div>
+                    <div class="breadcrumb-item" aria-current="page">Contact</div>
+                </div>
+            </nav>
             <h2>Get In Touch</h2>
             <p class="section-subtitle">Ready to discuss your UniFi network needs? Contact us at <span id="header-email">[Click to reveal email]</span> or use the form below.</p>
             
@@ -365,10 +428,13 @@
                         <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project or requirements..."></textarea>
                     </div>
                     
-                    <button type="submit" class="submit-button">
-                        <span>Send Message</span>
+                    <button type="submit" class="submit-button" id="submitBtn">
+                        <span class="button-text">Send Message</span>
                         <i class="fas fa-paper-plane"></i>
+                        <i class="fas fa-spinner fa-spin loading-spinner" style="display: none;"></i>
                     </button>
+                    
+                    <div class="form-message" id="formMessage" style="display: none;"></div>
 
                 </form>
             </div>

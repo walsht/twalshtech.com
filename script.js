@@ -393,3 +393,124 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Content protection - prevent piracy and unauthorized copying
+document.addEventListener('DOMContentLoaded', () => {
+    // Prevent right-click context menu
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+    });
+    
+    // Prevent keyboard shortcuts for copying
+    document.addEventListener('keydown', function(e) {
+        // Prevent Ctrl+C, Cmd+C, Ctrl+A, Cmd+A
+        if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'a')) {
+            e.preventDefault();
+            return false;
+        }
+        
+        // Prevent F12 (Developer Tools)
+        if (e.key === 'F12') {
+            e.preventDefault();
+            return false;
+        }
+        
+        // Prevent Ctrl+Shift+I, Cmd+Option+I (Developer Tools)
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I') {
+            e.preventDefault();
+            return false;
+        }
+        
+        // Prevent Ctrl+Shift+C, Cmd+Option+C (Element Inspector)
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'C') {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    // Prevent drag and drop of images
+    document.addEventListener('dragstart', function(e) {
+        if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    // Prevent selection of images
+    document.addEventListener('selectstart', function(e) {
+        if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    // Disable text selection on body
+    document.body.style.setProperty('-webkit-user-select', 'none', 'important');
+    document.body.style.setProperty('-moz-user-select', 'none', 'important');
+    document.body.style.setProperty('-ms-user-select', 'none', 'important');
+    document.body.style.setProperty('user-select', 'none', 'important');
+});
+
+// Enhanced form handling with loading states
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const formMessage = document.getElementById('formMessage');
+    
+    if (form && submitBtn && formMessage) {
+        // Track form field focus
+        const formFields = form.querySelectorAll('input, textarea, select');
+        formFields.forEach(field => {
+            field.addEventListener('focus', function() {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'form_field_focus', {
+                        'event_category': 'engagement',
+                        'event_label': field.name || 'unknown_field',
+                        'value': 1
+                    });
+                }
+            });
+        });
+        
+        // Enhanced form submission with loading states
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            formMessage.style.display = 'none';
+            
+            // Track form submission
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'form_submit', {
+                    'event_category': 'engagement',
+                    'event_label': 'contact_form',
+                    'value': 1
+                });
+            }
+            
+            // Simulate form processing (replace with actual form submission)
+            setTimeout(() => {
+                // Hide loading state
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+                
+                // Show success message
+                formMessage.textContent = 'Thank you! Your message has been sent successfully.';
+                formMessage.className = 'form-message success';
+                formMessage.style.display = 'block';
+                
+                // Reset form
+                form.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    formMessage.style.display = 'none';
+                }, 5000);
+                
+            }, 2000);
+        });
+    }
+});

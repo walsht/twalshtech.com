@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://twalshtech.com/sitemap.xml
+
+# Disallow admin or private areas (if any exist in the future)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow all content
+Allow: /images/
+Allow: /css/
+Allow: /js/
+
+# Crawl delay (optional)
+Crawl-delay: 1

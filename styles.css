@@ -1166,11 +1166,15 @@ body {
 .detail-card,
 .project-description,
 .project-images,
-.project-details {
+.project-details,
+h1, h2, h3, h4, h5, h6,
+p, li, span, div {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* Allow text selection for form elements and contact info */
@@ -1185,6 +1189,163 @@ body {
     -moz-user-select: text;
     -ms-user-select: text;
     user-select: text;
+}
+
+/* Image protection - prevent downloading and right-click */
+img, .project-image, .modal-image, .logo-img, .hero-logo-img {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+    pointer-events: auto; /* Allow modal functionality */
+}
+
+/* Additional image protection */
+.project-image, .modal-image {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
+
+/* Enhanced image protection with subtle overlay */
+.project-image, .modal-image {
+    position: relative;
+}
+
+.project-image::before, .modal-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Loading states and form feedback */
+.loading-spinner {
+    margin-left: 0.5rem;
+}
+
+.submit-button.loading .button-text {
+    opacity: 0.7;
+}
+
+.submit-button.loading .loading-spinner {
+    display: inline-block !important;
+}
+
+.form-message {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.form-message.success {
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.form-message.error {
+    background: #fee2e2;
+    color: #dc2626;
+    border: 1px solid #fca5a5;
+}
+
+/* Performance optimizations */
+.project-image, .modal-image {
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+/* Critical CSS for above-the-fold content */
+.hero, .navbar, .hero-content h1, .hero-content p {
+    contain: layout style paint;
+}
+
+/* Breadcrumb Navigation */
+.breadcrumb {
+    margin-bottom: 1.5rem;
+}
+
+.breadcrumb-list {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    padding: 0;
+    margin: 0;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.breadcrumb-item:not(:last-child)::after {
+    content: '>';
+    margin-left: 0.5rem;
+    color: #9ca3af;
+    font-weight: 600;
+}
+
+/* Safari-specific flexbox fixes */
+@supports (-webkit-appearance: none) {
+    .breadcrumb-list {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        -webkit-flex-wrap: nowrap;
+        -webkit-justify-content: flex-start;
+        -webkit-align-items: center;
+    }
+    
+    .breadcrumb-item {
+        -webkit-box-flex: 0;
+        -webkit-flex-shrink: 0;
+        -webkit-flex-grow: 0;
+    }
+}
+
+.breadcrumb a {
+    color: #059669;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    color: #047857;
+    text-decoration: underline;
+}
+
+.breadcrumb li[aria-current="page"] {
+    color: #6b7280;
+    font-weight: 500;
+}
+
+/* Prevent image saving */
+.project-image, .modal-image {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 /* Footer */

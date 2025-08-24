@@ -43,13 +43,15 @@ twalshtech.com/
 ├── privacy.html        # Privacy policy page
 ├── styles.css          # CSS styles with Safari iOS optimizations
 ├── script.js           # JavaScript functionality and image modal
-├── images/             # Project images and assets
+├── images/             # All images and assets
 │   ├── office-closet-before-after.jpg
-│   └── school-closet-before-after.jpg
-├── favicon.ico         # Site favicon
-├── favicon.png         # PNG favicon
-├── logo_2000.png       # High-resolution logo
-├── LOGO_FINAL.png      # Main logo file
+│   ├── school-closet-before-after.jpg
+│   ├── favicon.ico
+│   ├── favicon.png
+│   ├── logo_2000.png
+│   └── LOGO_FINAL.png
+├── .htaccess           # Apache configuration
+├── CNAME               # Custom domain configuration
 └── README.md           # This file
 ```
 
@@ -208,6 +210,28 @@ The site properly reflects the business structure:
 - `cta_click`: Call-to-action button usage
 - `form_submit`: Contact form submissions
 
+## Performance & SEO Optimizations
+
+### Image Optimization
+- **WebP Format**: Modern image format with automatic fallbacks
+- **Lazy Loading**: Images load only when needed
+- **Picture Element**: Responsive images with format selection
+- **Compression**: Optimized file sizes for faster loading
+
+### Advanced SEO
+- **Schema Markup**: Comprehensive structured data for services and projects
+- **Sitemap**: XML sitemap for search engine indexing
+- **Robots.txt**: Crawler control and optimization
+- **Meta Tags**: Enhanced meta descriptions and titles
+- **Breadcrumbs**: Navigation breadcrumbs for better UX
+
+### Performance Features
+- **Critical CSS**: Above-the-fold content optimization
+- **Resource Preloading**: Critical resources loaded first
+- **Hardware Acceleration**: GPU-accelerated animations
+- **Content Containment**: CSS containment for better performance
+- **Loading States**: Enhanced user feedback and experience
+
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
@@ -229,6 +253,10 @@ This project is open source and available under the [MIT License](LICENSE).
 - **JavaScript ES6+**: Modern APIs and event handling
 - **Performance Optimization**: Hardware acceleration and smooth animations
 - **Accessibility**: Keyboard navigation and touch-friendly controls
+- **WebP Image Support**: Modern image format with fallbacks
+- **Lazy Loading**: Optimized image loading for performance
+- **Critical CSS**: Above-the-fold content optimization
+- **Resource Preloading**: Critical resource prioritization
 
 ## Support
 
