@@ -1,0 +1,943 @@
+/* Shared Styles for Pillar Security Project Pages */
+/* Colors: #6A9AED (Blue), #BF3748 (Red), #DFAA3A (Gold) */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 10px;
+    background: #f8f9fa;
+    color: #2c2c2c;
+    min-height: 100vh;
+}
+
+/* Mobile-first responsive design */
+@media (min-width: 768px) {
+    body {
+        padding: 20px;
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    border: 3px solid #DFAA3A;
+}
+
+/* Mobile responsive container */
+@media (min-width: 768px) {
+    .container {
+        padding: 40px;
+    }
+}
+
+h1 {
+    color: #6A9AED;
+    text-align: center;
+    border-bottom: 4px solid #DFAA3A;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+/* Mobile responsive headings */
+@media (min-width: 768px) {
+    h1 {
+        margin-bottom: 40px;
+        font-size: 2.5em;
+    }
+}
+
+h2 {
+    color: #BF3748;
+    border-left: 4px solid #DFAA3A;
+    padding-left: 15px;
+    margin-top: 40px;
+}
+
+h3 {
+    color: #6A9AED;
+    margin-top: 25px;
+}
+
+/* Project Overview Section */
+.project-overview {
+    background: #e9ecef;
+    color: #495057;
+    padding: 30px;
+    border-radius: 12px;
+    margin: 30px 0;
+    text-align: center;
+    border: 2px solid #DFAA3A;
+}
+
+/* Phase Cards */
+.phase-card {
+    background: #f8f6f0;
+    border: 2px solid #DFAA3A;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+/* Mobile responsive phase cards */
+@media (min-width: 768px) {
+    .phase-card {
+        padding: 25px;
+        margin: 25px 0;
+    }
+}
+
+.phase-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.phase-1 {
+    border-left: 6px solid #6A9AED;
+}
+
+.phase-2 {
+    border-left: 6px solid #BF3748;
+}
+
+.phase-header {
+    background: #e9ecef;
+    color: #495057;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: center;
+    border: 2px solid #DFAA3A;
+}
+
+.phase-header h2 {
+    color: #495057 !important;
+    border-left: none !important;
+    padding-left: 0 !important;
+}
+
+.phase-header p {
+    color: #495057 !important;
+}
+
+.phase-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.phase-icon {
+    font-size: 2em;
+    margin-right: 15px;
+}
+
+.phase-title {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #6A9AED;
+    margin: 0;
+}
+
+/* Cost Elements */
+.cost-summary {
+    background: #f0f8ff;
+    border: 2px solid #DFAA3A;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.cost-breakdown {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+/* Mobile responsive cost breakdown */
+@media (min-width: 768px) {
+    .cost-breakdown {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+}
+
+.cost-item {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid #DFAA3A;
+}
+
+.cost-amount {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #BF3748;
+    margin: 10px 0;
+}
+
+.cost-label {
+    color: #6b7280;
+    font-size: 0.9em;
+}
+
+.total-cost {
+    background: #e9ecef;
+    color: #495057;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    margin: 30px 0;
+    box-shadow: 0 10px 25px rgba(233, 236, 239, 0.3);
+    border: 2px solid #DFAA3A;
+}
+
+.total-amount {
+    font-size: 3em;
+    font-weight: bold;
+    margin: 20px 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Tables */
+.cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Mobile responsive tables */
+@media (max-width: 767px) {
+    .cost-table {
+        font-size: 0.9em;
+        margin: 15px 0;
+    }
+    
+    .cost-table th,
+    .cost-table td {
+        padding: 8px 6px;
+    }
+    
+    .cost-table th {
+        font-size: 0.85em;
+    }
+}
+
+.cost-table th {
+    background: #6A9AED;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.cost-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cost-table tr {
+    background-color: white;
+}
+
+.scaling-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Mobile responsive scaling tables */
+@media (max-width: 767px) {
+    .scaling-table {
+        font-size: 0.85em;
+        margin: 15px 0;
+    }
+    
+    .scaling-table th,
+    .scaling-table td {
+        padding: 8px 4px;
+    }
+    
+    .scaling-table th {
+        font-size: 0.8em;
+    }
+}
+
+.scaling-table th {
+    background: #6A9AED;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.scaling-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.scaling-table tr {
+    background-color: white;
+}
+
+.total-row {
+    background: #e8f5e8 !important;
+    font-weight: bold;
+    font-size: 1.1em;
+    border: 1px solid #DFAA3A;
+}
+
+.highlight-row {
+    background: #fff8dc !important;
+    font-weight: bold;
+    border: 1px solid #DFAA3A;
+}
+
+/* Other Elements */
+.highlight {
+    background: #fff8dc;
+    padding: 15px;
+    border-left: 4px solid #DFAA3A;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+.summary-box {
+    background: #f0f8ff;
+    border: 1px solid #DFAA3A;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.phase-cost {
+    background: #f0f8ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 4px solid #DFAA3A;
+}
+
+.price {
+    font-weight: bold;
+    color: #BF3748;
+}
+
+.key-features {
+    background: #f0f8ff;
+    border: 1px solid #DFAA3A;
+    border-radius: 8px;
+    padding: 25px;
+    margin: 25px 0;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+}
+
+.feature-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #DFAA3A;
+}
+
+.feature-list li:before {
+    content: "✓ ";
+    color: #BF3748;
+    font-weight: bold;
+}
+
+/* Buttons */
+.cta-button {
+    display: inline-block;
+    background: #e9ecef;
+    color: #495057;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    margin: 15px 8px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(233, 236, 239, 0.3);
+    border: 2px solid #DFAA3A;
+    font-size: 0.9em;
+}
+
+/* Mobile responsive buttons */
+@media (min-width: 768px) {
+    .cta-button {
+        padding: 15px 30px;
+        margin: 20px 10px;
+        font-size: 1em;
+    }
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(233, 236, 239, 0.4);
+    background: #DFAA3A;
+    color: #495057;
+}
+
+/* Company Header */
+.company-header {
+    background: #e9ecef;
+    color: #495057;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border: 3px solid #DFAA3A;
+}
+
+/* Mobile responsive company header */
+@media (min-width: 768px) {
+    .company-header {
+        padding: 30px;
+        margin-bottom: 30px;
+    }
+}
+
+.company-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #DFAA3A;
+    text-align: center;
+}
+
+/* Mobile responsive company info */
+@media (min-width: 768px) {
+    .company-info {
+        flex-direction: row;
+        text-align: left;
+    }
+}
+
+.logo-container {
+    margin-right: 20px;
+}
+
+.company-logo {
+    max-width: 120px;
+    height: auto;
+    border: 2px solid #DFAA3A;
+    border-radius: 8px;
+    background: white;
+    padding: 10px;
+}
+
+.company-details {
+    flex: 1;
+}
+
+.company-name {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    color: #495057;
+}
+
+.company-tagline {
+    font-size: 1.1em;
+    margin: 0 0 5px 0;
+    color: #495057;
+    font-weight: 500;
+}
+
+.company-contact {
+    font-size: 0.9em;
+    margin: 0;
+    color: #DFAA3A;
+}
+
+.company-contact a {
+    color: #DFAA3A;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.company-contact a:hover {
+    color: #BF3748;
+    text-decoration: underline;
+}
+
+.project-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Mobile responsive project meta */
+@media (min-width: 768px) {
+    .project-meta {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        text-align: left;
+    }
+}
+
+.project-title h1 {
+    font-size: 2.2em;
+    margin: 0 0 10px 0;
+    color: #495057;
+    border: none;
+}
+
+.project-title h2 {
+    font-size: 1.3em;
+    margin: 0;
+    color: #DFAA3A;
+    font-weight: 400;
+}
+
+.project-details {
+    text-align: right;
+    font-size: 0.9em;
+}
+
+.project-details p {
+    margin: 5px 0;
+    color: #495057;
+}
+
+.project-details strong {
+    color: #DFAA3A;
+}
+
+/* Camera Comparison */
+.camera-comparison {
+    margin: 20px 0;
+}
+
+.image-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.comparison-image {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #DFAA3A;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+}
+
+.image-caption {
+    font-style: italic;
+    color: #6b7280;
+    margin: 10px 0;
+    font-size: 0.9em;
+}
+
+.upgrade-benefits {
+    background: #f8f9fa;
+    border: 1px solid #DFAA3A;
+    border-radius: 8px;
+    padding: 25px;
+    margin: 25px 0;
+}
+
+.upgrade-benefits h3 {
+    color: #BF3748;
+    margin-top: 0;
+}
+
+.upgrade-benefits p {
+    margin: 15px 0;
+    line-height: 1.6;
+}
+
+.upgrade-benefits strong {
+    color: #BF3748;
+}
+
+/* Additional Costs Breakdown */
+.additional-costs-breakdown {
+    margin: 30px 0;
+}
+
+.additional-costs-breakdown h3 {
+    color: #BF3748;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.cost-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+/* Mobile responsive cost grid */
+@media (min-width: 768px) {
+    .cost-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+}
+
+.cost-item {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid #DFAA3A;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.cost-amount {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #BF3748;
+    margin: 10px 0;
+}
+
+.cost-label {
+    color: #6A9AED;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.cost-details {
+    color: #6b7280;
+    font-size: 0.9em;
+    margin: 10px 0;
+    font-style: italic;
+}
+
+.total-additional-cost {
+    background: #6A9AED;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 20px 0 0 0;
+    font-size: 1.1em;
+    border: 2px solid #DFAA3A;
+}
+
+/* Note Section */
+.note {
+    background: #e3f2fd;
+    border: 1px solid #2196f3;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 25px 0;
+}
+
+.note p {
+    margin: 0;
+    color: #1565c0;
+    font-size: 0.95em;
+}
+
+.note strong {
+    color: #0d47a1;
+}
+
+/* Image Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+}
+
+/* Mobile responsive modal */
+@media (max-width: 767px) {
+    .modal-content {
+        max-width: 95%;
+        max-height: 80%;
+        margin: 20px auto;
+    }
+    
+    .close {
+        font-size: 2em;
+        top: 10px;
+        right: 15px;
+    }
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 90%;
+    max-width: 1200px;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+#modalCaption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: white;
+    padding: 10px 0;
+    height: 150px;
+    font-size: 1.1em;
+}
+
+.close {
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+}
+
+/* Disclaimer */
+.disclaimer {
+    background: #fff8dc;
+    border: 1px solid #DFAA3A;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 30px 0;
+    text-align: center;
+    font-style: italic;
+    color: #6A9AED;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+        color: black;
+        font-size: 12pt;
+        line-height: 1.4;
+        margin: 0;
+        padding: 20px;
+    }
+    
+    .container {
+        box-shadow: none;
+        border: 2px solid #000;
+        padding: 20px;
+        margin: 0;
+    }
+    
+    .cta-button {
+        display: none;
+    }
+    
+    .company-header {
+        background: white !important;
+        color: black !important;
+        border: 2px solid #000;
+    }
+    
+    .company-name, .company-tagline, .company-contact {
+        color: black !important;
+    }
+    
+    .project-title h1, .project-title h2 {
+        color: black !important;
+    }
+    
+    .project-details p, .project-details strong {
+        color: black !important;
+    }
+    
+    .phase-header, .total-cost, .project-overview {
+        background: #f0f0f0 !important;
+        color: black !important;
+        border: 1px solid #000;
+    }
+    
+    .phase-header h2, .phase-header p {
+        color: black !important;
+    }
+    
+    .total-amount {
+        color: black !important;
+        text-shadow: none;
+    }
+    
+    .cost-amount {
+        color: black !important;
+    }
+    
+    .scaling-table th {
+        background: #e0e0e0 !important;
+        color: black !important;
+    }
+    
+    .cost-table th {
+        background: #e0e0e0 !important;
+        color: black !important;
+    }
+    
+    .cost-breakdown {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+    }
+    
+    .cost-item {
+        border: 1px solid #000;
+        padding: 10px;
+    }
+    
+    .phase-card {
+        border: 1px solid #000;
+        background: white;
+    }
+    
+    .highlight, .summary-box, .phase-cost, .key-features {
+        border: 1px solid #000;
+        background: white;
+    }
+    
+    .disclaimer {
+        border: 1px solid #000;
+        background: white;
+        color: black;
+    }
+    
+    .company-logo {
+        border: 1px solid #000;
+        background: white;
+    }
+    
+    .logo-container {
+        margin-right: 15px;
+    }
+    
+    .company-logo {
+        max-width: 80px;
+        padding: 5px;
+    }
+    
+    .company-name {
+        font-size: 1.4em;
+    }
+    
+    .project-title h1 {
+        font-size: 1.8em;
+    }
+    
+    .project-title h2 {
+        font-size: 1.1em;
+    }
+    
+    .project-details {
+        font-size: 0.8em;
+    }
+    
+    .total-amount {
+        font-size: 2.5em;
+    }
+    
+    .cost-amount {
+        font-size: 1.3em;
+    }
+    
+    .phase-title {
+        font-size: 1.5em;
+    }
+    
+    .scaling-table, .cost-table {
+        font-size: 10pt;
+    }
+    
+    .scaling-table th, .scaling-table td,
+    .cost-table th, .cost-table td {
+        padding: 8px 6px;
+    }
+    
+    .cost-breakdown {
+        margin: 15px 0;
+    }
+    
+    .cost-item {
+        margin: 5px 0;
+    }
+    
+    .phase-card {
+        margin: 15px 0;
+        padding: 15px;
+    }
+    
+    .company-header {
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+    
+    .company-info {
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+    }
+    
+    .project-meta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .project-details {
+        text-align: left;
+        margin-top: 15px;
+    }
+    
+    .project-details p {
+        margin: 3px 0;
+    }
+    
+    .disclaimer {
+        margin: 20px 0;
+        padding: 15px;
+    }
+    
+    .cta-button {
+        display: none;
+    }
+    
+    .company-header {
+        page-break-inside: avoid;
+    }
+    
+    .phase-card {
+        page-break-inside: avoid;
+    }
+    
+    .total-cost {
+        page-break-inside: avoid;
+    }
+    
+    .scaling-table {
+        page-break-inside: avoid;
+    }
+    
+    .cost-table {
+        page-break-inside: avoid;
+    }
+}
