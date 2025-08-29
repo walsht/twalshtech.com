@@ -3,8 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
-    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, noydir">
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex, noydir">
+    <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="slurp" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="duckduckbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="baiduspider" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="yandexbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="facebookexternalhit" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="twitterbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="linkedinbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="ia_archiver" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="archive.org_bot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
     <title>Pillar Security Project - Executive Summary</title>
     <link rel="stylesheet" href="shared_styles.css">
 </head>
@@ -14,7 +24,7 @@
         <div class="company-header">
             <div class="company-info">
                 <div class="logo-container">
-                    <img src="logo_2000 white.png" alt="TWALSH Tech Logo" class="company-logo">
+                    <img src="images/logo_2000 white.png" alt="TWALSH Tech Logo" class="company-logo">
                 </div>
                 <div class="company-details">
                     <h3 class="company-name">TWALSH Tech</h3>
@@ -24,12 +34,12 @@
             </div>
             <div class="project-meta">
                 <div class="project-title">
-                    <h1>🏢 Pillar Security Project</h1>
+                    <h1>Pillar Security Project</h1>
                     <h2>Executive Summary & Cost Overview</h2>
                 </div>
                 <div class="project-details">
                     <p><strong>Prepared By:</strong> Tim Walsh, TWALSH Tech</p>
-                    <p><strong>Date:</strong> August 2025</p>
+                    <p><strong>Date:</strong> August 29, 2025</p>
                     <p><strong>Project Type:</strong> Comprehensive Security System Implementation</p>
                 </div>
             </div>
@@ -41,10 +51,40 @@
             <p>Comprehensive security system implementation for Pillar Security, featuring advanced door access control and surveillance camera systems. This project is designed to provide enterprise-grade security with professional installation and ongoing support.</p>
         </div>
 
+        <!-- Value Proposition -->
+        <div class="phase-card">
+            <div class="phase-header">
+                <div>
+                    <h2 class="phase-title">Why Choose This Solution?</h2>
+                    <p>Enterprise-Grade Security with Proven ROI</p>
+                </div>
+            </div>
+            
+            <div class="value-proposition">
+                <div class="benefit-grid">
+                    <div class="benefit-item">
+                        <h4>Enhanced Security</h4>
+                        <p>Multi-factor authentication with biometric, card, and PIN access. Real-time monitoring and instant alerts.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4>Cost Savings</h4>
+                        <p>No ongoing cost, no recurring monthly subscription fees. One-time fee forever. Prevent unauthorized access and potential theft.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4>Compliance & Reporting</h4>
+                        <p>Automated audit trails for regulatory compliance. Detailed access logs and incident reporting.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h4>Future-Proof Technology</h4>
+                        <p>Scalable system that grows with the school. Easy to add doors and cameras as needed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Phase 1: Door Access Control -->
         <div class="phase-card phase-1">
             <div class="phase-header">
-                <div class="phase-icon">🔐</div>
                 <div>
                     <h2 class="phase-title">Phase 1: Door Access Control System</h2>
                     <p>Advanced biometric and card-based access control with magnetic locks</p>
@@ -119,7 +159,6 @@
         <!-- Phase 2: Surveillance Cameras -->
         <div class="phase-card phase-2">
             <div class="phase-header">
-                <div class="phase-icon">📹</div>
                 <div>
                     <h2 class="phase-title">Phase 2: Surveillance Camera System</h2>
                     <p>High-definition IP cameras with advanced recording and monitoring capabilities</p>
@@ -182,7 +221,6 @@
         <!-- Camera System Comparison -->
         <div class="phase-card">
             <div class="phase-header">
-                <div class="phase-icon">🔍</div>
                 <div>
                     <h2 class="phase-title">Camera System Comparison</h2>
                     <p>Current Status vs. Proposed Unifi Upgrade</p>
@@ -192,14 +230,14 @@
             <div class="camera-comparison">
                 <h3>Current Camera Setup</h3>
                 <div class="image-container">
-                    <img src="cameras_current.png" alt="Current Camera Setup at Pillar" class="comparison-image">
-                    <p class="image-caption">Existing camera coverage showing limited interior surveillance</p>
+                    <img src="images/cameras_current.png" alt="Current Camera Setup at Pillar" class="comparison-image" onclick="openModal(this.src, 'Current Camera Setup at Pillar')">
+                    <p class="image-caption">Existing camera coverage showing limited interior surveillance<br><small>Click to view larger</small></p>
                 </div>
                 
                 <h3>Proposed Phase 2 Upgrade</h3>
                 <div class="image-container">
-                    <img src="cameras_phase2.png" alt="Proposed Phase 2 Camera Setup" class="comparison-image">
-                    <p class="image-caption">Enhanced coverage with Unifi cameras including hallway mode and AI detection</p>
+                    <img src="images/cameras_phase2.png" alt="Proposed Phase 2 Camera Setup" class="comparison-image" onclick="openModal(this.src, 'Proposed Phase 2 Camera Setup')">
+                    <p class="image-caption">Enhanced coverage with Unifi cameras including hallway mode and AI detection<br><small>Click to view larger</small></p>
                 </div>
                 
                 <div class="upgrade-benefits">
@@ -214,6 +252,43 @@
                     </ul>
                     
                     <p><strong>Currently, we have little real coverage inside the school. With Unifi cameras and their "hallway mode," we could easily achieve full coverage across all hallways and critical areas.</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hardware Showcase -->
+        <div class="phase-card">
+            <div class="phase-header">
+                <div>
+                    <h2 class="phase-title">Hardware Showcase</h2>
+                    <p>Key Components for Your Security System</p>
+                </div>
+            </div>
+            
+            <div class="hardware-showcase">
+                <p>Below are the key hardware components that will be installed as part of this security system upgrade:</p>
+                
+                <div class="image-container">
+                    <div class="comparison-image">
+                        <img src="images/G3 Reader Pro.png" alt="Ubiquiti Access G3 Reader Pro">
+                        <p class="image-caption">Ubiquiti Access G3 Reader Pro<br><small>Click to view larger</small></p>
+                    </div>
+                    <div class="comparison-image">
+                        <img src="images/G6 Turret Camera.png" alt="Ubiquiti G6 Turret Camera">
+                        <p class="image-caption">Ubiquiti G6 Turret Camera<br><small>Click to view larger</small></p>
+                    </div>
+                    <div class="comparison-image">
+                        <img src="images/Enterprise Access Hub.png" alt="Ubiquiti Enterprise Access Hub">
+                        <p class="image-caption">Ubiquiti Enterprise Access Hub<br><small>Click to view larger</small></p>
+                    </div>
+                    <div class="comparison-image">
+                        <img src="images/Magnetic Lock.png" alt="Magnetic Lock System">
+                        <p class="image-caption">Magnetic Lock System<br><small>Click to view larger</small></p>
+                    </div>
+                    <div class="comparison-image">
+                        <img src="images/Network Video Recorder Pro.png" alt="Network Video Recorder Pro">
+                        <p class="image-caption">Network Video Recorder Pro<br><small>Click to view larger</small></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -330,6 +405,10 @@
             <p><strong>Note:</strong> Each phase can be implemented independently. Additional costs are one-time expenses regardless of the number of doors or cameras.</p>
         </div>
 
+
+
+
+
         <!-- Call to Action -->
         <div style="text-align: center; margin: 30px 0;">
             <a href="2025AugPillarSecurityProject_Detailed.html" class="cta-button">View Detailed Costing</a>
@@ -354,14 +433,17 @@
         var modalImg = document.getElementById("modalImage");
         var modalCaption = document.getElementById("modalCaption");
 
-        // Get all comparison images and make them clickable
-        var images = document.querySelectorAll('.comparison-image');
-        images.forEach(function(img) {
-            img.style.cursor = 'pointer';
-            img.onclick = function() {
-                modal.style.display = "block";
-                modalImg.src = this.src;
-                modalCaption.innerHTML = this.alt;
+        // Get all images within comparison-image containers and make them clickable
+        var imageContainers = document.querySelectorAll('.comparison-image');
+        imageContainers.forEach(function(container) {
+            var img = container.querySelector('img');
+            if (img) {
+                img.style.cursor = 'pointer';
+                img.onclick = function() {
+                    modal.style.display = "block";
+                    modalImg.src = this.src;
+                    modalCaption.innerHTML = this.alt;
+                }
             }
         });
 

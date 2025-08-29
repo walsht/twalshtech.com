@@ -1,9 +1,59 @@
+# Comprehensive Privacy Protection for Pillar Security Project
+# This file prevents search engines from indexing sensitive project information
+
 User-agent: *
-Disallow: /Pillar_Security_Summary.html
-Disallow: /Pillar_Security_Detailed.html
+Disallow: /2025AugPillarSecurityProject_Summary.html
+Disallow: /2025AugPillarSecurityProject_Detailed.html
 Disallow: /shared_styles.css
 Disallow: /Pillar_Security_Project_Costing.csv
-Disallow: /logo_2000.png
+Disallow: /images/
+Disallow: /*.png
+Disallow: /*.jpg
+Disallow: /*.jpeg
+Disallow: /*.gif
+Disallow: /*.svg
+Disallow: /*.pdf
+Disallow: /*.xlsx
+Disallow: /*.csv
 
-# Allow access to main site content
+# Block specific search engines
+User-agent: Googlebot
+Disallow: /
+
+User-agent: Bingbot
+Disallow: /
+
+User-agent: Slurp
+Disallow: /
+
+User-agent: DuckDuckBot
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: YandexBot
+Disallow: /
+
+# Block archive services
+User-agent: ia_archiver
+Disallow: /
+
+User-agent: archive.org_bot
+Disallow: /
+
+# Block social media crawlers
+User-agent: facebookexternalhit
+Disallow: /
+
+User-agent: Twitterbot
+Disallow: /
+
+User-agent: LinkedInBot
+Disallow: /
+
+# Allow access to main site content (if any)
 Allow: /
+
+# Crawl-delay to slow down any bots that might get through
+Crawl-delay: 10
