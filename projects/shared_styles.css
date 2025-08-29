@@ -9,6 +9,7 @@ body {
     background: #f8f9fa;
     color: #2c2c2c;
     min-height: 100vh;
+    font-size: 1rem;
 }
 
 /* Mobile-first responsive design */
@@ -41,14 +42,14 @@ h1 {
     border-bottom: 4px solid #DFAA3A;
     padding-bottom: 15px;
     margin-bottom: 20px;
-    font-size: 2em;
+    font-size: 1.5em;
 }
 
 /* Mobile responsive headings */
 @media (min-width: 768px) {
     h1 {
         margin-bottom: 40px;
-        font-size: 2.5em;
+        font-size: 2em;
     }
 }
 
@@ -57,11 +58,13 @@ h2 {
     border-left: 4px solid #DFAA3A;
     padding-left: 15px;
     margin-top: 40px;
+    font-size: 1.25em;
 }
 
 h3 {
     color: #6A9AED;
     margin-top: 25px;
+    font-size: 1.125em;
 }
 
 /* Project Overview Section */
@@ -134,12 +137,12 @@ h3 {
 }
 
 .phase-icon {
-    font-size: 2em;
+    font-size: 1.5em;
     margin-right: 15px;
 }
 
 .phase-title {
-    font-size: 1.8em;
+    font-size: 1.4em;
     font-weight: bold;
     color: #6A9AED;
     margin: 0;
@@ -178,7 +181,7 @@ h3 {
 }
 
 .cost-amount {
-    font-size: 1.5em;
+    font-size: 1.25em;
     font-weight: bold;
     color: #BF3748;
     margin: 10px 0;
@@ -201,7 +204,7 @@ h3 {
 }
 
 .total-amount {
-    font-size: 3em;
+    font-size: 2em;
     font-weight: bold;
     margin: 20px 0;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
@@ -294,7 +297,7 @@ h3 {
 .total-row {
     background: #e8f5e8 !important;
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 1rem;
     border: 1px solid #DFAA3A;
 }
 
