@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /Pillar_Security_Summary.html
+Disallow: /Pillar_Security_Detailed.html
+Disallow: /shared_styles.css
+Disallow: /Pillar_Security_Project_Costing.csv
+Disallow: /logo_2000.png
+
+# Allow access to main site content
+Allow: /
